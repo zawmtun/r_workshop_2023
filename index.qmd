@@ -1,9 +1,9 @@
-# Preface {.unnumbered}
+# Preparation {.unnumbered}
 
-This is a Quarto book.
+This workshop is an introduction to data analysis with R. We will go through the lessons in 10 hours spread over 5 days (2 hours per day). We will start with the basics of R code, RStudio interface, importing CSV files, the structure of data frames, how to work with factors and dates, how to calculate summary statistics, how to perform univariable and multivariable regression, and a brief introduction to plotting. This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
-```{r}
-1 + 1
-```
+- Workshop design
+- Laptop, internet
+- Install R, RStudio, tidyverse
+

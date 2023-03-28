@@ -1,15 +1,18 @@
 project:
   type: book
-  output-dir: docs
 
 book:
-  title: "r_workshop_2023"
+  title: "R Workshop"
   author: "Zaw Myo Tun"
   date: "3/28/2023"
   chapters:
     - index.qmd
     - intro.qmd
-    - summary.qmd
+    - dplyr.qmd
+    - vectors.qmd
+    - data_viz.qmd
+    - descriptive.qmd
+    - regress.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -17,8 +20,6 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
 
 
 
