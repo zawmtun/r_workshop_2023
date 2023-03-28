@@ -1,9 +1,5 @@
-# Preface {.unnumbered}
+# Preparation {.unnumbered}
 
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+- Workshop design
+- Laptop, internet
+- Install R, RStudio, tidyverse
