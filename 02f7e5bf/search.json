@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Workshop",
+    "section": "",
+    "text": "Preparation\n\nWorkshop design\nLaptop, internet\nInstall R, RStudio, tidyverse"
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "R and R Studio introduction, data types, data import"
+  }
+]
