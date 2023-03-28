@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R Workshop",
+    "section": "",
+    "text": "Preparation\nThis workshop is an introduction to data analysis with R. We will go through the lessons in 10 hours spread over 5 days (2 hours per day). We will start with the basics of R code, RStudio interface, importing CSV files, the structure of data frames, how to work with factors and dates, how to calculate summary statistics, how to perform univariable and multivariable regression, and a brief introduction to plotting. This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.\n\nWorkshop design\nLaptop, internet\nInstall R, RStudio, tidyverse"
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "R and R Studio introduction, data types, data import"
+  }
+]
