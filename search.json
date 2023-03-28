@@ -4,14 +4,7 @@
     "href": "index.html",
     "title": "An Introduction to Data Analysis with R",
     "section": "",
-    "text": "Preparation\nThis workshop is an introduction to data analysis with R. We will go through the lessons in 10 hours spread over 5 days (2 hours per day). In this workshop, we will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis.\nThis workshop does not assume any prior knowledge of R or RStudio or any prior programming experience."
-  },
-  {
-    "objectID": "index.html#acknowledgement",
-    "href": "index.html#acknowledgement",
-    "title": "An Introduction to Data Analysis with R",
-    "section": "Acknowledgement",
-    "text": "Acknowledgement\nMost of the lessons in this workshop are adapted from Data Carpentry’s Data Analysis and Visualization in R for Ecologists."
+    "text": "Preparation\nThis workshop is an introduction to data analysis with R. We will go through the lessons in 10 hours spread over 5 days (2 hours per day). In this workshop, we will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis.\nThis workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.\nMost lessons in this workshop are adapted from Data Carpentry’s Data Analysis and Visualization in R for Ecologists."
   },
   {
     "objectID": "index.html#requirements",
@@ -32,13 +25,48 @@
     "href": "index.html#download-the-data",
     "title": "An Introduction to Data Analysis with R",
     "section": "Download the data",
-    "text": "Download the data\nWe will download the data directly from R during the lesson. However, if you are expecting problems with the network, if may be better to download the data before the workshop and store it on your computer.\nThe data files for the lesson can be manually downloaded from this link:"
+    "text": "Download the data\nWe will download the data directly from R during the lesson. However, if you are expecting problems with the network, if may be better to download the data before the workshop and store it on your computer.\nThe data files for the lesson can be manually downloaded from this link."
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
+    "objectID": "intro.html#creating-objects-in-r",
+    "href": "intro.html#creating-objects-in-r",
     "title": "1  Introduction",
-    "section": "",
-    "text": "R and R Studio introduction, data types, data import"
+    "section": "1.1 Creating objects in R",
+    "text": "1.1 Creating objects in R\nYou get output from R simply by typing math in the console.\n\n3 + 5\n12 / 7\n\nBut to do useful and interesting things, we need to store these outputs to objects. To create an object, we need to give it a name followed by the assignment operator <-, and the value we want to give it.\n\nweight_kg <- 55\n\n<- is the assignment operator. It assigns values on the right to objects on the left. So, after executing x <- 3, the value of x is 3. For historical reason, you can also use = for assignment, but it does not work in every context. So, it is a good practice to use <- for assignment.\nIn RStudio, by default press Alt + - in Windows and Options + - in MacOS will write <- in a single keystroke. You can also modify these shortcut keys."
+  },
+  {
+    "objectID": "intro.html#naming-conventions-in-r",
+    "href": "intro.html#naming-conventions-in-r",
+    "title": "1  Introduction",
+    "section": "1.2 Naming conventions in R",
+    "text": "1.2 Naming conventions in R\nObject names can be anything such as x, current_temperature, or subject_id although there are some restrictions to it. Here are some guidelines on naming objects:\n\nObject names should be explicit and not too long.\nNames cannot start with a number (2x is not valid, but x2 is).\nR is case sensitive. So, weight_kg is different from Weight_kg.\nSome names cannot be used because they are the names of fundamental functions in R (e.g., if, else, for, see here for a complete list). In general, even if it is allowed, it is best to not use other function names (e.g., c, T, mean, data, df, weights). If you are not sure, check the help to see if the name is already in use.\nIt is recommended to use nouns for object names and verbs for function names.\nBe consistent in the styling of your code, such as where you put spaces, how you name objects, etc. Naming styles include “lower_snake”, “UPPER_SNAKE”, “lowerCamelCase”, “UpperCamelCase”, etc. Using a consistent coding style makes your code easier to read for your future self and your collaborators. In R, three popular style guides come from Google, Jean Fan and the tidyverse. The tidyverse style is very comprehensive and may seem overwhelming at first.\n\n\nObjects VS. variables\nWhat are known as objects in R are known as variables in many other programming languages. Depending on the context, object and variable can have drastically different meanings. However, in this lesson, the two words are used synonymously. For more information see: https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects\n\nWhen assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:\n\nweight_kg <- 55    # doesn't print anything\n(weight_kg <- 55)  # but putting parenthesis around the call prints the value of `weight_kg`\n\n[1] 55\n\nweight_kg          # and so does typing the name of the object\n\n[1] 55\n\n\nNow that you have created weight_kg object in R environment (i.e., in your computer memory), you can check whether that is the case by checking Environment pane (shortcut Ctrl/Cmd + 8). You should see weight_kg and the associated value there.\nNow, we can do arithmetic with weight_kg. For example, we may want to convert this weight into pounds ()weight in pounds is 2.2 times the weight in kg).\n\n2.2 * weight_kg\n\n[1] 121\n\n\nWe can also change an object’s value by assigning it a new one.\n\nweight_kg <- 57.5\n2.2 * weight_kg\n\n[1] 126.5\n\n\nIn R, assigning a value to one object does not change the values of other objects. For example, let’s store the weight in pounds in a new object, weight_lb:\n\nweight_lb <- 2.2 * weight_kg\n\nand then change weight_kg to 100.\n\nweight_kg <- 100\n\nWhat do you think is the current content of the object weight_lb? 126.5 or 220?"
+  },
+  {
+    "objectID": "intro.html#saving-your-code",
+    "href": "intro.html#saving-your-code",
+    "title": "1  Introduction",
+    "section": "1.3 Saving your code",
+    "text": "1.3 Saving your code\nUntil now, we have been typing code into the console. This is useful for quick queries but not so helpful if you want to revisit your work for any reason. For that, we need to save our code in a script. A script can be opened by pressing Ctrl/Cmd + Shift + N. It is wise to save your script file immediately (press Ctrl/Cmd + S). This will open a dialogue box where you can indicate where to save your script file, and what to name it. The .R file extension is added automatically. Dont’ forget to save your work periodically by pressing Ctrl/Cmd + S."
+  },
+  {
+    "objectID": "intro.html#comments",
+    "href": "intro.html#comments",
+    "title": "1  Introduction",
+    "section": "1.4 Comments",
+    "text": "1.4 Comments\nThe comment character in R is #. Anything to the right of a # in a script will be ignored by R. This is useful for leaving notes and explanations in yoru scripts. RStudio provides a keyboard shortcut to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard Ctrl/Cmd + Shift + C. If you only want to comment out one line, you can put the cursor at any location of that line (i.e. no need to select the whole line), then press Ctrl``/Cmd + Shift + C.\n\n1.4.1 Challenge\nWhat are the values after each statement in the following?\n\nmass <- 47.5            # mass?\nage  <- 122             # age?\nmass <- mass * 2.0      # mass?\nage  <- age - 20        # age?\nmass_index <- mass/age  # mass_index?"
+  },
+  {
+    "objectID": "intro.html#functions-and-their-arguments",
+    "href": "intro.html#functions-and-their-arguments",
+    "title": "1  Introduction",
+    "section": "1.5 Functions and their arguments",
+    "text": "1.5 Functions and their arguments"
+  },
+  {
+    "objectID": "intro.html#vectors-and-data-types",
+    "href": "intro.html#vectors-and-data-types",
+    "title": "1  Introduction",
+    "section": "1.6 Vectors and data types",
+    "text": "1.6 Vectors and data types"
   }
 ]

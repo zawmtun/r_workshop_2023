@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,7 +93,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./dplyr.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -103,42 +165,26 @@ ul.task-list li input[type="checkbox"] {
   <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data management</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors and subsetting</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./data_viz.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data visualisation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Descriptive analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./regress.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regression analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#creating-objects-in-r" id="toc-creating-objects-in-r" class="nav-link active" data-scroll-target="#creating-objects-in-r"><span class="toc-section-number">1.1</span>  Creating objects in R</a></li>
+  <li><a href="#naming-conventions-in-r" id="toc-naming-conventions-in-r" class="nav-link" data-scroll-target="#naming-conventions-in-r"><span class="toc-section-number">1.2</span>  Naming conventions in R</a></li>
+  <li><a href="#saving-your-code" id="toc-saving-your-code" class="nav-link" data-scroll-target="#saving-your-code"><span class="toc-section-number">1.3</span>  Saving your code</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="toc-section-number">1.4</span>  Comments</a>
+  <ul class="collapse">
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="toc-section-number">1.4.1</span>  Challenge</a></li>
+  </ul></li>
+  <li><a href="#functions-and-their-arguments" id="toc-functions-and-their-arguments" class="nav-link" data-scroll-target="#functions-and-their-arguments"><span class="toc-section-number">1.5</span>  Functions and their arguments</a></li>
+  <li><a href="#vectors-and-data-types" id="toc-vectors-and-data-types" class="nav-link" data-scroll-target="#vectors-and-data-types"><span class="toc-section-number">1.6</span>  Vectors and data types</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -160,11 +206,100 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="creating-objects-in-r" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="creating-objects-in-r"><span class="header-section-number">1.1</span> Creating objects in R</h2>
+<p>You get output from R simply by typing math in the console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span> <span class="sc">/</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But to do useful and interesting things, we need to store these outputs to objects. To create an object, we need to give it a name followed by the assignment operator <code>&lt;-</code>, and the value we want to give it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="dv">55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of x is <code>3</code>. For historical reason, you can also use <code>=</code> for assignment, but it does not work in every context. So, it is a good practice to use <code>&lt;-</code> for assignment.</p>
+<p>In RStudio, by default press <code>Alt</code> + <code>-</code> in Windows and <code>Options</code> + <code>-</code> in MacOS will write <code>&lt;-</code> in a single keystroke. You can also modify these shortcut keys.</p>
+</section>
+<section id="naming-conventions-in-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="naming-conventions-in-r"><span class="header-section-number">1.2</span> Naming conventions in R</h2>
+<p>Object names can be anything such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code> although there are some restrictions to it. Here are some guidelines on naming objects:</p>
 <ul>
-<li>R and R Studio introduction, data types, data import</li>
+<li>Object names should be explicit and not too long.</li>
+<li>Names cannot start with a number (<code>2x</code> is not valid, but <code>x2</code> is).</li>
+<li>R is case sensitive. So, <code>weight_kg</code> is different from <code>Weight_kg</code>.</li>
+<li>Some names cannot be used because they are the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it is allowed, it is best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). If you are not sure, check the help to see if the name is already in use.</li>
+<li>It is recommended to use nouns for object names and verbs for function names.</li>
+<li>Be consistent in the styling of your code, such as where you put spaces, how you name objects, etc. Naming styles include “lower_snake”, “UPPER_SNAKE”, “lowerCamelCase”, “UpperCamelCase”, etc. Using a consistent coding style makes your code easier to read for your future self and your collaborators. In R, three popular style guides come from <a href="https://google.github.io/styleguide/Rguide.xml">Google</a>, <a href="https://jef.works/R-style-guide/">Jean Fan</a> and the <a href="https://style.tidyverse.org/">tidyverse</a>. The tidyverse style is very comprehensive and may seem overwhelming at first.</li>
 </ul>
+<blockquote class="blockquote">
+<p>Objects VS. variables</p>
+<p>What are known as <code>objects</code> in <code>R</code> are known as <code>variables</code> in many other programming languages. Depending on the context, <code>object</code> and <code>variable</code> can have drastically different meanings. However, in this lesson, the two words are used synonymously. For more information see: <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects</a></p>
+</blockquote>
+<p>When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="dv">55</span>    <span class="co"># doesn't print anything</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(weight_kg <span class="ot">&lt;-</span> <span class="dv">55</span>)  <span class="co"># but putting parenthesis around the call prints the value of `weight_kg`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>weight_kg          <span class="co"># and so does typing the name of the object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55</code></pre>
+</div>
+</div>
+<p>Now that you have created <code>weight_kg</code> object in R environment (i.e., in your computer memory), you can check whether that is the case by checking Environment pane (shortcut <code>Ctrl/Cmd</code> + <code>8</code>). You should see <code>weight_kg</code> and the associated value there.</p>
+<p>Now, we can do arithmetic with <code>weight_kg</code>. For example, we may want to convert this weight into pounds ()weight in pounds is 2.2 times the weight in kg).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.2</span> <span class="sc">*</span> weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 121</code></pre>
+</div>
+</div>
+<p>We can also change an object’s value by assigning it a new one.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="fl">57.5</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2.2</span> <span class="sc">*</span> weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 126.5</code></pre>
+</div>
+</div>
+<p>In R, assigning a value to one object does not change the values of other objects. For example, let’s store the weight in pounds in a new object, <code>weight_lb</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>weight_lb <span class="ot">&lt;-</span> <span class="fl">2.2</span> <span class="sc">*</span> weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then change weight_kg to 100.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What do you think is the current content of the object <code>weight_lb</code>? 126.5 or 220?</p>
+</section>
+<section id="saving-your-code" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="saving-your-code"><span class="header-section-number">1.3</span> Saving your code</h2>
+<p>Until now, we have been typing code into the console. This is useful for quick queries but not so helpful if you want to revisit your work for any reason. For that, we need to save our code in a script. A script can be opened by pressing <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>N</code>. It is wise to save your script file immediately (press <code>Ctrl/Cmd</code> + <code>S</code>). This will open a dialogue box where you can indicate where to save your script file, and what to name it. The <code>.R</code> file extension is added automatically. Dont’ forget to save your work periodically by pressing <code>Ctrl/Cmd</code> + <code>S</code>.</p>
+</section>
+<section id="comments" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="comments"><span class="header-section-number">1.4</span> Comments</h2>
+<p>The comment character in R is <code>#</code>. Anything to the right of a <code>#</code> in a script will be ignored by R. This is useful for leaving notes and explanations in yoru scripts. RStudio provides a keyboard shortcut to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>C</code>. If you only want to comment out one line, you can put the cursor at any location of that line (i.e.&nbsp;no need to select the whole line), then press <code>Ctrl``/Cmd</code> + <code>Shift</code> + <code>C</code>.</p>
+<section id="challenge" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">1.4.1</span> Challenge</h3>
+<p>What are the values after each statement in the following?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mass <span class="ot">&lt;-</span> <span class="fl">47.5</span>            <span class="co"># mass?</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>age  <span class="ot">&lt;-</span> <span class="dv">122</span>             <span class="co"># age?</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mass <span class="ot">&lt;-</span> mass <span class="sc">*</span> <span class="fl">2.0</span>      <span class="co"># mass?</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>age  <span class="ot">&lt;-</span> age <span class="sc">-</span> <span class="dv">20</span>        <span class="co"># age?</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mass_index <span class="ot">&lt;-</span> mass<span class="sc">/</span>age  <span class="co"># mass_index?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="functions-and-their-arguments" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="functions-and-their-arguments"><span class="header-section-number">1.5</span> Functions and their arguments</h2>
+</section>
+<section id="vectors-and-data-types" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="vectors-and-data-types"><span class="header-section-number">1.6</span> Vectors and data types</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -307,9 +442,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dplyr.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data management</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
