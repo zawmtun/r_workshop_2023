@@ -95,7 +95,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -162,11 +161,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./index.html" class="sidebar-item-text sidebar-link active">Preparation</a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -181,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a></li>
   <li><a href="#installations" id="toc-installations" class="nav-link" data-scroll-target="#installations">Installations</a>
   <ul class="collapse">
-  <li><a href="#installation-steps" id="toc-installation-steps" class="nav-link" data-scroll-target="#installation-steps">Installation steps</a></li>
+  <li><a href="#steps-for-installing-r-and-rstudio" id="toc-steps-for-installing-r-and-rstudio" class="nav-link" data-scroll-target="#steps-for-installing-r-and-rstudio">Steps for installing R and RStudio</a></li>
   <li><a href="#install-necessary-r-packages" id="toc-install-necessary-r-packages" class="nav-link" data-scroll-target="#install-necessary-r-packages">Install necessary R packages</a></li>
   </ul></li>
   <li><a href="#download-the-data" id="toc-download-the-data" class="nav-link" data-scroll-target="#download-the-data">Download the data</a></li>
@@ -223,12 +217,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="preparation" class="level1 unnumbered">
 <h1 class="unnumbered">Preparation</h1>
-<p>This workshop is an introduction to data analysis with R. We will go through the lessons in 10 hours spread over 5 days (2 hours per day). In this workshop, we will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis.</p>
+<p>Welcome to the workshop for an introduction to data analysis with R!</p>
+<p>In this workshop, we will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis. We will go through these lessons in 10 hours spread over 5 days (2 hours per day).</p>
 <p>This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.</p>
-<p>First four chapters of this book are adapted from Data Carpentry’s <a href="https://datacarpentry.org/R-ecology-lesson/index.html#Install_R_and_RStudio">Data Analysis and Visualization in R for Ecologists</a>.</p>
+<p>The first four chapters of this book were adapted from Data Carpentry’s <a href="https://datacarpentry.org/R-ecology-lesson/index.html#Install_R_and_RStudio">Data Analysis and Visualization in R for Ecologists</a>.</p>
 <section id="requirements" class="level2">
 <h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
-<p>All participants are required to use their own laptops throughout the workshop. You can follow the lessons with either Windows or Mac laptops. You must be able to install R and RStudio on your laptop. You will also need internet connection for setting up your laptop.</p>
+<p>All participants are required to use their own laptops throughout the workshop. You can follow the lessons with both Windows and Mac laptops. You must be able to install R and RStudio on your laptop. Please do the installations before the workshop begins.</p>
+<p>Please make sure your laptop is fully charged each day before the workshop. We may not be able to provide enough electricity sockets for every participants.</p>
 </section>
 <section id="installations" class="level2">
 <h2 class="anchored" data-anchor-id="installations">Installations</h2>
@@ -239,8 +235,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>You will need R and RStudio installed on your computer before the workshop starts. Follow the instructions below based on your operating system.</p>
 <p>You need to install R first and then install RStudio.</p>
-<section id="installation-steps" class="level3">
-<h3 class="anchored" data-anchor-id="installation-steps">Installation steps</h3>
+<p>If you have installed an older version of R and RStudio or if you are not sure about the versions, please do a new installation.</p>
+<section id="steps-for-installing-r-and-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="steps-for-installing-r-and-rstudio">Steps for installing R and RStudio</h3>
 <ul>
 <li>Download R and RStudio installers from <a href="https://posit.co/download/rstudio-desktop/">Posit website</a>.</li>
 <li>Run the installer (<code>.exe</code> file for Windows and <code>.pkg</code> file for MacOS) for R</li>
@@ -250,16 +247,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="install-necessary-r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="install-necessary-r-packages">Install necessary R packages</h3>
-<p>We will need <code>tidyverse</code>, <code>gtsummary</code>, <code>patchwork</code> packages to follow the lessons from this workshop. Once you open RStudio, you will see the R Console pane on the left-side of your screen. Please copy the following code to R Console and press Enter. This will automatically install necessary packages to your computer.</p>
+<p>We will need <code>tidyverse</code>, <code>broom</code>, <code>gtsummary</code>, and <code>patchwork</code> packages to follow the lessons from this workshop. Once you open RStudio, you will see the R Console pane on the left-side of your screen.</p>
+<p><img src="images/Screenshot 2023-03-30 at 1.29.03 AM.png" class="img-fluid" alt="RStudio screenshot highlighting console" width="510"></p>
+<p>Please copy and paste the following code to R Console, next to <code>&gt;</code> prompt and press Enter. This will automatically install necessary packages to your computer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"gtsummary"</span>, <span class="st">"patchwork"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"broom"</span>, <span class="st">"gtsummary"</span>, <span class="st">"patchwork"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, you can install the packages using RStudio’s graphical user interface by going to <code>Tools &gt; Install packages</code> and type the names of the packages separated by a comma.</p>
 <p>R will try to download and install the packages on your computer. When the installation is complete, you can try to load the package by pasting the following code to the console.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you do not see an error like <code>there is no package called ...</code>, the package installation was successful.</p>
 </section>
@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="download-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="download-the-data">Download the data</h2>
 <p>We will download the data directly from R during the lesson. However, if you are expecting problems with the network, if may be better to download the data before the workshop and store it on your computer.</p>
-<p>The data files for the lesson can be manually downloaded from this link.</p>
+<p>The data set for the lesson can be manually downloaded from this <a href="https://drive.google.com/file/d/105FSGAX3fjIS-rcCSsimi9tesj6n8-7-/view?usp=share_link">link</a>.</p>
 
 
 </section>
@@ -407,15 +407,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
