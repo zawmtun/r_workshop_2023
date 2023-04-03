@@ -1,9 +1,68 @@
 # Preparation {.unnumbered}
 
-This workshop is an introduction to data analysis with R. We will go through the lessons in 10 hours spread over 5 days (2 hours per day). We will start with the basics of R code, RStudio interface, importing CSV files, the structure of data frames, how to work with factors and dates, how to calculate summary statistics, how to perform univariable and multivariable regression, and a brief introduction to plotting. This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.
+Welcome to the workshop for an introduction to data analysis with R!
 
+In this workshop, we will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis. We will go through these lessons in 10 hours spread over 5 days (2 hours per day).
 
-- Workshop design
-- Laptop, internet
-- Install R, RStudio, tidyverse
+This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.
 
+The first four chapters of this book were adapted from Data Carpentry's [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html#Install_R_and_RStudio).
+
+## Requirements
+
+All participants are required to use their own laptops throughout the workshop. You can follow the lessons with both Windows and Mac laptops. You must be able to install R and RStudio on your laptop. Please do the installations before the workshop begins.
+
+Please make sure your laptop is fully charged each day before the workshop. We may not be able to provide enough electricity sockets for every participants.
+
+## Installations
+
+We will need to install both R and RStudio for analysing data. R and RStudio are two separate pieces of software. Both are open source software - anyone can download them for free.
+
+-   R is a programming language particularly designed for data exploration, visualisation, and statistical analysis.
+-   RStudio is an integrated development environment that makes using R easier. RStudio is created by Posit, an open-source software company. We will use RStudio to interact with R in this workshop.
+
+You will need R and RStudio installed on your computer before the workshop starts. Follow the instructions below based on your operating system.
+
+You need to install R first and then install RStudio.
+
+If you have installed an older version of R and RStudio or if you are not sure about the versions, please do a new installation.
+
+### Steps for installing R and RStudio
+
+-   Download R and RStudio installers from [Posit website](https://posit.co/download/rstudio-desktop/).
+-   Run the installer (`.exe` file for Windows and `.pkg` file for MacOS) for R
+-   Run the installer for RStudio
+-   Once installed, open RStudio to check that it works and no error messages
+
+### Install necessary R packages
+
+We will need `tidyverse`, `broom`, `gtsummary`, and `patchwork` packages to follow the lessons from this workshop. Once you open RStudio, you will see the R Console pane on the left-side of your screen.
+
+![](images/Screenshot%202023-03-30%20at%201.29.03%20AM.png){fig-alt="RStudio screenshot highlighting console" width="510"}
+
+Please copy and paste the following code to R Console, next to `>` prompt and press Enter. This will automatically install necessary packages to your computer.
+
+```{r}
+#| eval: false
+install.packages(c("tidyverse", "broom", "gtsummary", "patchwork"))
+```
+
+Alternatively, you can install the packages using RStudio's graphical user interface by going to `Tools > Install packages` and type the names of the packages separated by a comma.
+
+R will try to download and install the packages on your computer. When the installation is complete, you can try to load the package by pasting the following code to the console.
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(gtsummary)
+library(patchwork)
+library(broom)
+```
+
+If you do not see an error like `there is no package called ...`, the package installation was successful.
+
+## Download the data
+
+We will download the data directly from R during the lesson. However, if you are expecting problems with the network, if may be better to download the data before the workshop and store it on your computer.
+
+The data set for the lesson can be manually downloaded from this [link](https://drive.google.com/file/d/105FSGAX3fjIS-rcCSsimi9tesj6n8-7-/view?usp=share_link).

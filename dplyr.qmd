@@ -1,1 +1,374 @@
 # Data management
+
+*Load package*
+
+```{r}
+library(tidyverse)
+```
+
+*Read data*
+
+```{r}
+surveys <- read_csv("ex/portal_data_joined.csv")
+str(surveys)
+```
+
+## `dplyr` functions
+
+-   `select()`: subset columns
+-   `filter()`: subset rows on conditions
+-   `mutate()`: create new columns by using information from other columns
+-   `group_by()` and `summarize()`: create summary statistics on grouped data
+-   `arrange()`: sort results
+-   `count()`: count discrete values
+
+## Select columns and filter rows
+
+Select columns `plot_id`, `species_id`, `weight` from `surveys` dataset.
+
+```{r}
+select(surveys, plot_id, species_id, weight)
+```
+
+Remove columns `record_id` and `species_id` from `surveys` dataset.
+
+```{r}
+select(surveys, -record_id, -species_id)
+```
+
+Select rows (observations) of the year 1995.
+
+```{r}
+head(surveys$year == 1995)
+length(surveys$year == 1995)
+filter(surveys, year == 1995)
+filter(surveys, year != 1995)
+# == equal
+# != unequal
+# >
+# >=
+# <
+# <
+```
+
+## Pipes
+
+Consider the following commands.
+
+```{r}
+surveys2 <- filter(surveys, weight < 5)
+surveys_sml <- select(surveys2, species_id, sex, weight)
+```
+
+We can also nest functions together.
+
+```{r}
+surveys_sml <- select(filter(surveys, weight < 5), species_id, sex, weight)
+```
+
+Let's use pipe.
+
+```{r}
+# |> or %>%
+
+surveys |>
+  filter(weight < 5) |> 
+  select(species_id, sex, weight)
+
+surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight)
+```
+
+```{r}
+surveys_sml <- surveys |> 
+  filter(weight < 5) |> 
+  select(species_id, sex, weight)
+
+surveys_sml
+```
+
+## Challenge
+
+Using pipes, subset the `surveys` data to include animals collected before 1995 and retain only the columns `year`, `sex`, and `weight.`
+
+```{r}
+answer <- surveys |> 
+  filter(year < 1995) |> 
+  select(year, sex, weight)
+
+answer
+```
+
+## Create new columns
+
+Create a new column of weight in kg.
+
+```{r}
+dat <- surveys |> 
+  mutate(weight_kg = weight / 1000)
+
+view(dat)
+```
+
+### Challenge
+
+Create a new data frame from the `surveys` data that meets the following criteria: contains only the `species_id` column and a new column called `hindfoot_cm` containing the `hindfoot_length` values (currently in mm) converted to centimeters. In this `hindfoot_cm` column, there are no `NA`s and all values are less than 3.
+
+Hint: think about how the commands should be ordered to produce this data frame!
+
+```{r}
+answer <- surveys |> 
+  mutate(hindfoot_cm = hindfoot_length/10) |> 
+  filter(!is.na(hindfoot_length)) |> 
+  filter(hindfoot_cm < 3) |> 
+  select(species_id, hindfoot_cm)
+
+answer
+```
+
+## Aggregate
+
+Get average weight by `sex`.
+
+```{r}
+surveys |> 
+  group_by(sex) |> 
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
+
+surveys |> 
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
+
+mean(surveys$weight, na.rm = TRUE)
+```
+
+Get average weight by `sex` and `species_id`.
+
+```{r}
+dat <- surveys |> 
+  group_by(sex, species_id) |> 
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
+
+View(dat)
+```
+
+Get average and minimum weight by `sex` and `species_id`.
+
+```{r}
+surveys |>
+  filter(!is.na(weight)) |>
+  group_by(sex, species_id) |>
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight))
+```
+
+Sort the results by `min_weight`.
+
+```{r}
+surveys |>
+  filter(!is.na(weight)) |>
+  group_by(sex, species_id) |>
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight)) |>
+  arrange(min_weight)
+```
+
+Sort the results by `min_weight` in descending order.
+
+```{r}
+surveys |>
+  filter(!is.na(weight)) |>
+  group_by(sex, species_id) |>
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight)) |>
+  arrange(desc(min_weight))
+```
+
+## Counting
+
+```{r}
+surveys |>
+    count(sex)
+
+class(surveys$sex)
+summary(surveys$sex)
+```
+
+```{r}
+surveys |>
+    group_by(sex) |>
+    summarise(count = n())
+```
+
+```{r}
+surveys |>
+    count(sex, sort = TRUE)
+```
+
+```{r}
+surveys |>
+  count(sex, species)
+```
+
+```{r}
+surveys |>
+  count(sex, species) |>
+  arrange(species, desc(n))
+```
+
+### Challenge
+
+1.  How many animals were caught in each plot_type surveyed?
+
+```{r}
+surveys |> count(plot_type)
+```
+
+2.  Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).
+
+```{r}
+dat <- surveys |> 
+  group_by(species_id) |> 
+  summarise(
+    hf_mean = mean(hindfoot_length, na.rm = TRUE),
+    hf_min = min(hindfoot_length, na.rm = TRUE),
+    hf_max = max(hindfoot_length, na.rm = TRUE),
+    obs = n()
+  )
+```
+
+3.  What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight.
+
+```{r}
+dat <- surveys |> 
+  drop_na(weight) |>
+  group_by(year) |> 
+  mutate(wt_max = max(weight)) |> 
+  filter(weight == wt_max) |> 
+  ungroup() |> 
+  arrange(year) |> 
+  select(year, genus, species_id, weight) |> 
+  distinct()
+
+surveys
+
+test <- surveys |> 
+  group_by(year)
+
+test
+
+is_grouped_df(test)
+is_grouped_df(surveys)
+```
+
+## Reshaping data
+
+```{r}
+surveys_gw <- surveys |>
+  filter(!is.na(weight)) |>
+  group_by(plot_id, genus) |>
+  summarize(mean_weight = mean(weight))
+
+surveys_gw
+str(surveys_gw)
+```
+
+Long to wide
+
+```{r}
+surveys_wide <- surveys_gw |>
+  pivot_wider(names_from = genus, values_from = mean_weight)
+
+str(surveys_wide)
+```
+
+```{r}
+surveys_gw |>
+  pivot_wider(names_from = genus, values_from = mean_weight, values_fill = 0) |>
+  head()
+```
+
+Wide to long
+
+```{r}
+surveys_long <- surveys_wide |>
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id)
+
+str(surveys_long)
+```
+
+```{r}
+surveys_wide |>
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id) |>
+  head()
+
+```
+
+## Challenge
+
+Q. Reshape the surveys data frame with year as columns, plot_id as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function n_distinct() to get the number of unique genera within a particular chunk of data. It's a powerful function! See ?n_distinct for more.
+
+```{r}
+dat <- surveys |> 
+  group_by(year, plot_id) |> 
+  summarise(genera = n_distinct(genus)) |> 
+  ungroup() |> 
+  pivot_wider(names_from = year, values_from = genera)
+```
+
+Q. Now take that data frame and pivot_longer() it, so each row is a unique plot_id by year combination.
+
+```{r}
+dat1 <- dat |> 
+  pivot_longer(names_to = "year", values_to = "genus_num", cols = -plot_id)
+```
+
+Q. The surveys data set has two measurement columns: hindfoot_length and weight. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use pivot_longer() to create a dataset where we have a names column called measurement and a value column that takes on the value of either hindfoot_length or weight. Hint: You'll need to specify which columns will be part of the reshape.
+
+```{r}
+dat <- surveys |> 
+  select(record_id, hindfoot_length, weight) |> 
+  pivot_longer(names_to = "measurement", values_to = "value", cols = -record_id)
+
+dat <- surveys |> 
+  pivot_longer(names_to = "measurement", values_to = "value", cols = c(hindfoot_length, weight))
+  
+```
+
+Q. With this new data set, calculate the average of each measurement in each year for each different plot_type. Then pivot_wider() them into a data set with a column for hindfoot_length and weight. Hint: You only need to specify the names and values columns for pivot_wider().
+
+```{r}
+dat_new <- dat |> 
+  group_by(year, plot_type, measurement) |> 
+  summarise(
+    avg = mean(value, na.rm = TRUE)
+  ) |> 
+  pivot_wider(names_from = measurement, values_from = avg)
+```
+
+## Exporting data
+
+```{r}
+surveys_complete <- surveys |>
+  filter(!is.na(weight),           # remove missing weight
+         !is.na(hindfoot_length),  # remove missing hindfoot_length
+         !is.na(sex))                # remove missing sex
+```
+
+```{r}
+## Extract the most common species_id
+species_counts <- surveys_complete |>
+    count(species_id) |>
+    filter(n >= 50)
+
+species_counts$species_id
+
+## Only keep the most common species
+surveys_complete <- surveys_complete |>
+  filter(species_id %in% species_counts$species_id)
+
+```
+
+```{r}
+write_csv(surveys_complete, file = "ex/surveys_complete.csv")
+```

@@ -2,20 +2,17 @@ project:
   type: book
 
 book:
-  title: "R Workshop"
+  title: "An Introduction to Data Analysis with R"
   author: "Zaw Myo Tun"
   date: "3/28/2023"
   chapters:
     - index.qmd
-    - intro.qmd
-    - dplyr.qmd
-    - vectors.qmd
-    - data_viz.qmd
-    - descriptive.qmd
-    - regress.qmd
-    - references.qmd
-
-bibliography: references.bib
+    # - intro.qmd
+    # - dplyr.qmd
+    # - subsetting.qmd
+    # - data_viz.qmd
+    # - descriptive.qmd
+    # - regress.qmd
 
 format:
   html:
