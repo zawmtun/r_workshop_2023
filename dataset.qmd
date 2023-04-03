@@ -16,8 +16,10 @@ Maternal tetanus vaccination was defined as newborns protected against neonatal 
 
 5\. Five or more injections at any time prior to the last pregnancy
 
+Variable names and their labels are listed below:
+
 |         |                                   |                                                                       |
-|------|-------------------------|----------------------------------------|
+|--------|--------------------------|----------------------------------------|
 | **No.** | **Variable name**                 | **Variable label**                                                    |
 | 1       | caseid                            | ID number of mothers                                                  |
 | 2       | age                               | Age in years                                                          |
