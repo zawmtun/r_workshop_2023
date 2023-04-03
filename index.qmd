@@ -2,7 +2,9 @@
 
 Welcome to the workshop for an introduction to data analysis with R!
 
-In this workshop, we will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis. We will go through these lessons in 10 hours spread over 5 days (2 hours per day).
+The focus of this workshop is primarily to familiarise the participants with R code and introduce some of the popular R packages for analysing data. We will cover the basics of R code, RStudio interface, importing CSV files, the structure of data frames, factors and dates, calculate summary statistics, and a brief introduction to plotting and regression analysis. We will go through these lessons in 10 hours spread over 5 days (2 hours per day).
+
+However, in-depth discussion of the epidemiological or statistical concepts are not within the scope of this workshop; we would need more than 10 learning hours for that!
 
 This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.
 
