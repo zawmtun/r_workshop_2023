@@ -6,8 +6,6 @@ In this workshop, we will cover the basics of R code, RStudio interface, importi
 
 This workshop does not assume any prior knowledge of R or RStudio or any prior programming experience.
 
-The first four chapters of this book were adapted from Data Carpentry's [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html#Install_R_and_RStudio).
-
 ## Requirements
 
 All participants are required to use their own laptops throughout the workshop. You can follow the lessons with both Windows and Mac laptops. You must be able to install R and RStudio on your laptop. Please do the installations before the workshop begins.
@@ -60,9 +58,3 @@ library(broom)
 ```
 
 If you do not see an error like `there is no package called ...`, the package installation was successful.
-
-## Download the data
-
-We will download the data directly from R during the lesson. However, if you are expecting problems with the network, if may be better to download the data before the workshop and store it on your computer.
-
-The data set for the lesson can be manually downloaded from this [link](https://drive.google.com/file/d/105FSGAX3fjIS-rcCSsimi9tesj6n8-7-/view?usp=share_link).
