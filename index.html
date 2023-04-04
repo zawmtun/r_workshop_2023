@@ -252,11 +252,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="install-necessary-r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="install-necessary-r-packages">Install necessary R packages</h3>
-<p>We will need <code>tidyverse</code>, <code>broom</code>, <code>gtsummary</code>, <code>car</code>, and <code>patchwork</code> packages to follow the lessons. Once you open RStudio, you will see the R Console pane on the left-side of your screen.</p>
+<p>We will need <code>tidyverse</code>, <code>broom</code>, <code>gtsummary</code>, <code>car</code>, <code>patchwork</code>, and <code>flextable</code> packages to follow the lessons. Once you open RStudio, you will see the R Console pane on the left-side of your screen.</p>
 <p><img src="images/Screenshot 2023-03-30 at 1.29.03 AM.png" class="img-fluid" alt="RStudio screenshot highlighting console" width="510"></p>
 <p>Please copy and paste the following code to R Console, next to <code>&gt;</code> prompt and press Enter. This will automatically install necessary packages to your computer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"broom"</span>, <span class="st">"gtsummary"</span>, <span class="st">"car"</span>, <span class="st">"patchwork"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"broom"</span>, <span class="st">"gtsummary"</span>, <span class="st">"car"</span>, <span class="st">"patchwork"</span>, <span class="st">"flextable"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, you can install the packages using RStudio’s graphical user interface by going to <code>Tools &gt; Install packages</code> and type the names of the packages separated by a comma.</p>
 <p>R will try to download and install the packages on your computer. When the installation is complete, you can try to load the package by pasting the following code to the console.</p>
@@ -265,7 +265,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you do not see an error like <code>there is no package called ...</code>, the package installation was successful.</p>
 
