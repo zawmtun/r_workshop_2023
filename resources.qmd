@@ -4,7 +4,9 @@
 
 -   [R for data science](https://r4ds.had.co.nz/)
 
--   [Quarto](https://quarto.org/)
+-   [Quarto website](https://quarto.org/)
+
+-   [`gtsummary` website](https://www.danieldsjoberg.com/gtsummary/index.html)
 
 -   [ggplot2: Elegant Graphics for Data Analysis](ggplot2:%20Elegant%20Graphics%20for%20Data%20Analysis)
 
