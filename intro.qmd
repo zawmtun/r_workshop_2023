@@ -72,7 +72,7 @@ weight_kg <- 100
 
 What do you think is the current content of the object `weight_lb`? 126.5 or 220?
 
-## Saving your code
+## Saving your code in a R script
 
 Until now, we have been typing code into the console. This is useful for quick queries but not so helpful if you want to revisit your work for any reason. For that, we need to save our code in a script. A script can be opened by pressing `Ctrl/Cmd` + `Shift` + `N`. It is wise to save your script file immediately (press `Ctrl/Cmd` + `S`). This will open a dialogue box where you can indicate where to save your script file, and what to name it. The `.R` file extension is added automatically. Dont' forget to save your work periodically by pressing `Ctrl/Cmd` + `S`.
 
@@ -95,3 +95,7 @@ mass_index <- mass/age  # mass_index?
 ## Functions and their arguments
 
 ## Vectors and data types
+
+length()
+
+Missing data

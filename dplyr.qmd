@@ -1,3 +1,9 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
 # Data management
 
 *Load package*
@@ -9,157 +15,262 @@ library(tidyverse)
 *Read data*
 
 ```{r}
-surveys <- read_csv("ex/portal_data_joined.csv")
+surveys <- read_csv("dhs_myanmar_tetanus.csv")
+```
+
+`read_csv()` read in CSV file as a `data.frame`, a special data structure in R. `data.frame` is constructed by vectors: Each column is a vector and each vector has the same length.
+
+Let's print `surveys` directly in the console.
+
+```{r}
+surveys
+```
+
+The output shows that it is a `tibble`, a dataframe variant and the first 10 rows of the data with as many columns as the console screen can fit.
+
+We can have an overview of the data using `str()`.
+
+```{r}
 str(surveys)
 ```
 
-## `dplyr` functions
+The output shows that there are 3867 rows and 15 columns. The column names are listed following `$`. It also shows data type and first few values of each column.
 
--   `select()`: subset columns
--   `filter()`: subset rows on conditions
--   `mutate()`: create new columns by using information from other columns
--   `group_by()` and `summarize()`: create summary statistics on grouped data
--   `arrange()`: sort results
--   `count()`: count discrete values
-
-## Select columns and filter rows
-
-Select columns `plot_id`, `species_id`, `weight` from `surveys` dataset.
+We can also `View()` the dataframe like a spreadsheet. To do that, first put the cursor on the name of the dataframe and then press **F2**. Alternatively, you can type the following to the console:
 
 ```{r}
-select(surveys, plot_id, species_id, weight)
+View(surveys)
+```
+
+
+## `dplyr` functions
+
+`dplyr` package consists of the following basic verbs in managing a dataframe.
+
+-   `select()`: Select columns
+-   `filter()`: Select rows based on conditions
+-   `mutate()`: Create new columns
+-   `group_by()` and `summarize()`: Create summary statistics on grouped data
+-   `arrange()`: Sort results
+-   `count()`: Count discrete values
+
+## Select columns
+
+We can keep columns of a dataframe by name. The code below keep `age`, `education`, `ancplace` from `surveys` dataset.
+
+```{r}
+select(surveys, age, education, ancplace)
+```
+
+We can also select columns by sequence number (index) of columns. Let's say we would like to keep first, third, and fifth columns.
+
+```{r}
+select(surveys, 1, 3, 5)
+```
+
+There are a few helper functions that allows us to select columns more efficiently. These include:
+
+-   `starts_with()` : Starts with an exact prefix.
+-   `ends_with()` : Ends with an exact suffix.
+-   `contains()` : Contains a literal string.
+-   `matches()` : Matches a regular expression.
+-   `num_range()` : Matches a numerical range like x01, x02, x03.
+
+For example, we can select columns that starts with `get_help`.
+
+```{r}
+select(surveys, starts_with("get_help"))
+```
+
+What if we want to select columns that contains `health` in their names.
+
+```{r}
+select(surveys, contains("health"))
+```
+
+We can combine the helper functions with other selection methods. Here, we select `caseid`, `age`, and columns that starts with `get_help`.
+
+```{r}
+select(surveys, caseid, age, starts_with("get_help"))
 ```
 
 Remove columns `record_id` and `species_id` from `surveys` dataset.
 
 ```{r}
-select(surveys, -record_id, -species_id)
+select(surveys, -age, -education, -ancplace)
 ```
 
-Select rows (observations) of the year 1995.
+## Filter rows
+
+`filter()` should be used together with logical operators that compares one or two columns.
+
+**TODO: Add logical operators table**
+
+-   `x < y`
+-   `x > y`
+-   `x <= y`
+-   `x >= y`
+-   `x == y`
+-   `x != y`
+
+Here are a few examples;
+
+This code selects rows of mothers younger than 17.
 
 ```{r}
-head(surveys$year == 1995)
-length(surveys$year == 1995)
-filter(surveys, year == 1995)
-filter(surveys, year != 1995)
-# == equal
-# != unequal
-# >
-# >=
-# <
-# <
+filter(surveys, age < 17)
+```
+
+This code selects rows of mothers residing in rural areas.
+
+```{r}
+filter(surveys, residence == "Rural")
+```
+
+This code selects rows of mothers who completed primary school.
+
+```{r}
+filter(surveys, education == "Primary")
+```
+
+We can also combine two or more logical comparisons using `&` (AND) and `|` (OR). For example, the code below selects rows of mothers younger than 17 residing in rural areas.
+
+```{r}
+filter(surveys, age < 17 & residence == "Rural")
+```
+
+The code below select rows within age range of 18 and 22.
+
+```{r}
+filter(surveys, age >= 18 & age <= 22)
+```
+
+The code below select rows with mothers younger than 17 or older than 45. 
+
+```{r}
+filter(surveys, age < 17 | age > 45)
 ```
 
 ## Pipes
 
-Consider the following commands.
+Consider the following commands. We first select rows and feed the resulting dataframe to the following line to select columns.
 
 ```{r}
-surveys2 <- filter(surveys, weight < 5)
-surveys_sml <- select(surveys2, species_id, sex, weight)
+surveys2 <- filter(surveys, age < 17)
+surveys_demo <- select(surveys2, age, residence, employ)
+surveys_demo
 ```
 
-We can also nest functions together.
+We can also nest these two functions together.
 
 ```{r}
-surveys_sml <- select(filter(surveys, weight < 5), species_id, sex, weight)
+surveys_demo <- select(filter(surveys, age < 17), age, residence, employ)
 ```
 
-Let's use pipe.
+Let's use native pipe `|>` instead of nesting functions.
 
 ```{r}
-# |> or %>%
+surveys_demo <- surveys |>
+  filter(age < 17) |> 
+  select(age, residence, employ)
 
-surveys |>
-  filter(weight < 5) |> 
-  select(species_id, sex, weight)
+surveys_demo
+```
 
+For demonstration, here is another commonly used pipe `%>%`.
+
+```{r}
 surveys %>%
-  filter(weight < 5) %>%
-  select(species_id, sex, weight)
-```
-
-```{r}
-surveys_sml <- surveys |> 
-  filter(weight < 5) |> 
-  select(species_id, sex, weight)
-
-surveys_sml
+  filter(age < 17) %>%
+  select(age, residence, employ)
 ```
 
 ## Challenge
 
-Using pipes, subset the `surveys` data to include animals collected before 1995 and retain only the columns `year`, `sex`, and `weight.`
+Using pipes, select the `surveys` data to include mothers gave birth to their last child at home and retain only columns `age`, `ancplace`, and `tetanus_vacc`
 
 ```{r}
 answer <- surveys |> 
-  filter(year < 1995) |> 
-  select(year, sex, weight)
+  filter(ancplace == "Home") |> 
+  select(age, ancplace, tetanus_vacc)
 
 answer
 ```
 
 ## Create new columns
 
-Create a new column of weight in kg.
+Let's create a new column that has double the age of mothers. Then, select the original and the newly created column.
+
+```{r}
+surveys |> 
+  mutate(age2 = age * 2) |> 
+  select(age, age2)
+```
+
+Next, let's create a new column of age group including the following categories: 15-24, 25-29, 30-34, 34-49. To do that, we use `case_when()` in which each age group and the corresponding logical statement are linked using a `~`. `.default = "Unknown"` will label the rows that do not match any of the above conditions as Unknown.
 
 ```{r}
 dat <- surveys |> 
-  mutate(weight_kg = weight / 1000)
+  mutate(
+    agegrp = case_when(
+      age >= 15 & age <= 24 ~ "15-24",
+      age >= 25 & age <= 29 ~ "25-29",
+      age >= 30 & age <= 34 ~ "30-34",
+      age >= 35 & age <= 49 ~ "34-49",
+      .default = "Unknown"
+    )
+  )
+```
 
-view(dat)
+Let's check if the grouping is done correctly.
+
+```{r}
+dat |> 
+  select(age, agegrp) |> 
+  table()
 ```
 
 ### Challenge
 
-Create a new data frame from the `surveys` data that meets the following criteria: contains only the `species_id` column and a new column called `hindfoot_cm` containing the `hindfoot_length` values (currently in mm) converted to centimeters. In this `hindfoot_cm` column, there are no `NA`s and all values are less than 3.
+Create a new dataframe from the surveys with a new column that lumps the birth order of last child of 4 and above into a single group. Name the new column as  `birth_order_last_child_grp`.
 
-Hint: think about how the commands should be ordered to produce this data frame!
+Hint: Think carefully about what to use as default.
 
 ```{r}
-answer <- surveys |> 
-  mutate(hindfoot_cm = hindfoot_length/10) |> 
-  filter(!is.na(hindfoot_length)) |> 
-  filter(hindfoot_cm < 3) |> 
-  select(species_id, hindfoot_cm)
-
-answer
+dat <- dat |> 
+  mutate(
+    birth_order_last_child = case_when(
+      birth_order_last_child >= 4 ~ "4 and above",
+      .default = birth_order_last_child
+    )
+  )
 ```
 
 ## Aggregate
 
-Get average weight by `sex`.
+We often want to summarise data by aggregating the data. Here, we calculate the average age by `residence`.
 
 ```{r}
 surveys |> 
-  group_by(sex) |> 
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
-
-surveys |> 
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
-
-mean(surveys$weight, na.rm = TRUE)
+  group_by(residence) |> 
+  summarize(mean_age = mean(age))
 ```
 
-Get average weight by `sex` and `species_id`.
+Now, let's get average age by `residence` and `education`.
 
 ```{r}
-dat <- surveys |> 
-  group_by(sex, species_id) |> 
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
-
-View(dat)
+surveys |> 
+  group_by(residence, education) |> 
+  summarize(mean_age = mean(age))
 ```
 
-Get average and minimum weight by `sex` and `species_id`.
+We can also aggregate using multiple summary measures in one `summarise()` call. Now, let's get average and minimum age by `residence` and `education`.
 
 ```{r}
 surveys |>
-  filter(!is.na(weight)) |>
-  group_by(sex, species_id) |>
-  summarize(mean_weight = mean(weight),
-            min_weight = min(weight))
+  group_by(residence, education) |>
+  summarize(mean_age = mean(age),
+            min_age = min(age))
 ```
 
 Sort the results by `min_weight`.

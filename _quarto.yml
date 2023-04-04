@@ -14,10 +14,11 @@ book:
     # - data_viz.qmd
     # - descriptive.qmd
     # - regress.qmd
+    # - example_report.qmd
+    - resources.qmd
 
 format:
   html:
     theme: cosmo
-
 
 

@@ -1,0 +1,11 @@
+# Resources
+
+-   Data Carpentry: [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/index.html)
+
+-   [R for data science](https://r4ds.had.co.nz/)
+
+-   [Quarto](https://quarto.org/)
+
+-   [ggplot2: Elegant Graphics for Data Analysis](ggplot2:%20Elegant%20Graphics%20for%20Data%20Analysis)
+
+-   [The Epidemiologist R Handbook](https://appliedepi.org/epirhandbook/)
