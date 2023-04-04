@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Data Analysis with R - 1&nbsp; Download the data</title>
+<title>An Introduction to Data Analysis with R - 2&nbsp; Resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./resources.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./dataset.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resources</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -100,12 +99,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataset.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></a>
+  <a href="./dataset.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resources</span></a>
+  <a href="./resources.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resources</span></a>
   </div>
 </li>
     </ul>
@@ -120,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resources</span></h1>
 </div>
 
 
@@ -135,104 +134,13 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>We will manually download the example dataset from this <a href="https://drive.google.com/file/d/105FSGAX3fjIS-rcCSsimi9tesj6n8-7-/view?usp=share_link">link</a>. If you are expecting problems with the network, it may be better to download the data before the workshop and store it on your computer.</p>
-<p>The example dataset is a simplified subset of the <a href="https://dhsprogram.com/pubs/pdf/FR324/FR324.pdf">Myanmar Demographic Health Survey (2014-2015).</a> In this analysis, we are primarily interested in maternal tetanus vaccination. Thus, women who reported at least one birth in the last five years were included in the dataset.</p>
-<p>Maternal tetanus vaccination was defined as newborns protected against neonatal tetanus. According to the <a href="https://themimu.info/sites/themimu.info/files/documents/Ref_Doc_National_Guidelines_for_Antenatal_Care_for_Service_Providers_May2018.pdf">Myanmar National Guidelines for Antenatal Care</a>, a newborn is protected against neonatal tetanus if the mother has received any of the following:</p>
-<p>1. Two injections of tetanus toxoid containing vaccine during the last pregnancy</p>
-<p>2. Two or more injections, the last one within three years of the last pregnancy</p>
-<p>3. Three or more injections, the last one within five years of the last pregnancy</p>
-<p>4. Four or more injections, the last one within 10 years of the last pregnancy</p>
-<p>5. Five or more injections at any time prior to the last pregnancy</p>
-<p>Variable names and their labels are listed below:</p>
-<table class="table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 35%">
-<col style="width: 54%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>No.</strong></td>
-<td><strong>Variable name</strong></td>
-<td><strong>Variable label</strong></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>caseid</td>
-<td>ID number of mothers</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>age</td>
-<td>Age in years</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td>state_region</td>
-<td>State or region of residence</td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td>residence</td>
-<td>Urban or rural residence</td>
-</tr>
-<tr class="even">
-<td>5</td>
-<td>birth_order_last_child</td>
-<td>Birth order of last pregnancy</td>
-</tr>
-<tr class="odd">
-<td>6</td>
-<td>education</td>
-<td>Highest education level of mothers</td>
-</tr>
-<tr class="even">
-<td>7</td>
-<td>employ</td>
-<td>Mother’s occupation</td>
-</tr>
-<tr class="odd">
-<td>8</td>
-<td>wealth</td>
-<td>Quintiles of mother’s wealth index (specific to urban or rural areas)</td>
-</tr>
-<tr class="even">
-<td>9</td>
-<td>get_help_permission</td>
-<td>Getting medical help for self: getting permission to go</td>
-</tr>
-<tr class="odd">
-<td>10</td>
-<td>person_decides_healthcare</td>
-<td>Person who usually decides on woman’s healthcare</td>
-</tr>
-<tr class="even">
-<td>11</td>
-<td>get_help_not_go_alone</td>
-<td>Getting medical help for self: not wanting to go alone</td>
-</tr>
-<tr class="odd">
-<td>12</td>
-<td>get_help_money</td>
-<td>Getting medical help for self: getting money needed for treatment</td>
-</tr>
-<tr class="even">
-<td>13</td>
-<td>get_help_distance_health_facility</td>
-<td>Getting medical help for self: distance to health facility</td>
-</tr>
-<tr class="odd">
-<td>14</td>
-<td>ancplace</td>
-<td>Type of facility where women received antenatal care</td>
-</tr>
-<tr class="even">
-<td>15</td>
-<td>tetanus_vacc</td>
-<td>Maternal tetanus vaccination</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li><p>Data Carpentry: <a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Analysis and Visualization in R for Ecologists</a></p></li>
+<li><p><a href="https://r4ds.had.co.nz/">R for data science</a></p></li>
+<li><p><a href="https://quarto.org/">Quarto</a></p></li>
+<li><p><a href="ggplot2:%20Elegant%20Graphics%20for%20Data%20Analysis">ggplot2: Elegant Graphics for Data Analysis</a></p></li>
+<li><p><a href="https://appliedepi.org/epirhandbook/">The Epidemiologist R Handbook</a></p></li>
+</ul>
 
 
 
@@ -372,14 +280,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preparation</span>
+      <a href="./dataset.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./resources.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Resources</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
