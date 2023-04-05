@@ -42,6 +42,11 @@ We can also `View()` the dataframe like a spreadsheet. To do that, first put the
 View(surveys)
 ```
 
+```{r}
+# TODO: write about tidy data.
+```
+
+## Tidy data
 
 ## `dplyr` functions
 
