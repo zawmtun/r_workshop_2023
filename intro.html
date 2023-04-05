@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Data Analysis with R - 1&nbsp; Introduction</title>
+<title>An Introduction to Data Analysis with R - 2&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./index.html" rel="prev">
+<link href="./resources.html" rel="next">
+<link href="./dataset.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -132,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -162,7 +163,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./dataset.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Resources</span></a>
   </div>
 </li>
     </ul>
@@ -174,12 +185,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#creating-objects-in-r" id="toc-creating-objects-in-r" class="nav-link active" data-scroll-target="#creating-objects-in-r"><span class="toc-section-number">1.1</span>  Creating objects in R</a></li>
-  <li><a href="#naming-conventions-in-r" id="toc-naming-conventions-in-r" class="nav-link" data-scroll-target="#naming-conventions-in-r"><span class="toc-section-number">1.2</span>  Naming conventions in R</a></li>
-  <li><a href="#saving-your-code" id="toc-saving-your-code" class="nav-link" data-scroll-target="#saving-your-code"><span class="toc-section-number">1.3</span>  Saving your code</a></li>
-  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="toc-section-number">1.4</span>  Comments</a></li>
-  <li><a href="#functions-and-their-arguments" id="toc-functions-and-their-arguments" class="nav-link" data-scroll-target="#functions-and-their-arguments"><span class="toc-section-number">1.5</span>  Functions and their arguments</a></li>
-  <li><a href="#vectors-and-data-types" id="toc-vectors-and-data-types" class="nav-link" data-scroll-target="#vectors-and-data-types"><span class="toc-section-number">1.6</span>  Vectors and data types</a></li>
+  <li><a href="#creating-objects-in-r" id="toc-creating-objects-in-r" class="nav-link active" data-scroll-target="#creating-objects-in-r"><span class="toc-section-number">2.1</span>  Creating objects in R</a></li>
+  <li><a href="#naming-conventions-in-r" id="toc-naming-conventions-in-r" class="nav-link" data-scroll-target="#naming-conventions-in-r"><span class="toc-section-number">2.2</span>  Naming conventions in R</a></li>
+  <li><a href="#saving-your-code-in-a-r-script" id="toc-saving-your-code-in-a-r-script" class="nav-link" data-scroll-target="#saving-your-code-in-a-r-script"><span class="toc-section-number">2.3</span>  Saving your code in a R script</a></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="toc-section-number">2.4</span>  Comments</a></li>
+  <li><a href="#functions-and-their-arguments" id="toc-functions-and-their-arguments" class="nav-link" data-scroll-target="#functions-and-their-arguments"><span class="toc-section-number">2.5</span>  Functions and their arguments</a></li>
+  <li><a href="#vectors-and-data-types" id="toc-vectors-and-data-types" class="nav-link" data-scroll-target="#vectors-and-data-types"><span class="toc-section-number">2.6</span>  Vectors and data types</a>
+  <ul class="collapse">
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="toc-section-number">2.6.1</span>  Challenge</a></li>
+  </ul></li>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"><span class="toc-section-number">2.7</span>  Missing data</a></li>
   </ul>
 </nav>
     </div>
@@ -188,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
@@ -203,8 +218,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="creating-objects-in-r" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="creating-objects-in-r"><span class="header-section-number">1.1</span> Creating objects in R</h2>
+<p>Most of this chapter are adapted from <a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Carpentry’s data analysis and visualization in R for ecologists</a></p>
+<section id="creating-objects-in-r" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="creating-objects-in-r"><span class="header-section-number">2.1</span> Creating objects in R</h2>
 <p>You get output from R simply by typing math in the console.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span>
@@ -217,15 +233,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of x is <code>3</code>. For historical reason, you can also use <code>=</code> for assignment, but it does not work in every context. So, it is a good practice to use <code>&lt;-</code> for assignment.</p>
 <p>In RStudio, by default press <code>Alt</code> + <code>-</code> in Windows and <code>Options</code> + <code>-</code> in MacOS will write <code>&lt;-</code> in a single keystroke. You can also modify these shortcut keys.</p>
 </section>
-<section id="naming-conventions-in-r" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="naming-conventions-in-r"><span class="header-section-number">1.2</span> Naming conventions in R</h2>
+<section id="naming-conventions-in-r" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="naming-conventions-in-r"><span class="header-section-number">2.2</span> Naming conventions in R</h2>
 <p>Object names can be anything such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code> although there are some restrictions to it. Here are some guidelines on naming objects:</p>
 <ul>
-<li>Object names should be explicit and not too long.</li>
-<li>Names cannot start with a number (<code>2x</code> is not valid, but <code>x2</code> is).</li>
+<li>Be explicit and not too long.</li>
+<li>Cannot start with a number (<code>2x</code> is not valid, but <code>x2</code> is).</li>
 <li>R is case sensitive. So, <code>weight_kg</code> is different from <code>Weight_kg</code>.</li>
-<li>Some names cannot be used because they are the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it is allowed, it is best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). If you are not sure, check the help to see if the name is already in use.</li>
-<li>It is recommended to use nouns for object names and verbs for function names.</li>
+<li>Some names cannot be used because they are reserved words in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it is allowed, it is best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). If you are not sure, check the help to see if the name is already in use.</li>
+<li>Use nouns for object names and verbs for function names.</li>
 <li>Be consistent in the styling of your code, such as where you put spaces, how you name objects, etc. Naming styles include “lower_snake”, “UPPER_SNAKE”, “lowerCamelCase”, “UpperCamelCase”, etc. Using a consistent coding style makes your code easier to read for your future self and your collaborators. In R, three popular style guides come from <a href="https://google.github.io/styleguide/Rguide.xml">Google</a>, <a href="https://jef.works/R-style-guide/">Jean Fan</a> and the <a href="https://style.tidyverse.org/">tidyverse</a>. The tidyverse style is very comprehensive and may seem overwhelming at first.</li>
 </ul>
 <blockquote class="blockquote">
@@ -245,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Now that you have created <code>weight_kg</code> object in R environment (i.e., in your computer memory), you can check whether that is the case by checking Environment pane (shortcut <code>Ctrl/Cmd</code> + <code>8</code>). You should see <code>weight_kg</code> and the associated value there.</p>
-<p>Now, we can do arithmetic with <code>weight_kg</code>. For example, we may want to convert this weight into pounds ()weight in pounds is 2.2 times the weight in kg).</p>
+<p>Now, we can do arithmetic with <code>weight_kg</code>. For example, we may want to convert this weight into pounds (weight in pounds is 2.2 times the weight in kg).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fl">2.2</span> <span class="sc">*</span> weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -270,13 +286,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>What do you think is the current content of the object <code>weight_lb</code>? 126.5 or 220?</p>
 </section>
-<section id="saving-your-code" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="saving-your-code"><span class="header-section-number">1.3</span> Saving your code</h2>
+<section id="saving-your-code-in-a-r-script" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="saving-your-code-in-a-r-script"><span class="header-section-number">2.3</span> Saving your code in a R script</h2>
 <p>Until now, we have been typing code into the console. This is useful for quick queries but not so helpful if you want to revisit your work for any reason. For that, we need to save our code in a script. A script can be opened by pressing <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>N</code>. It is wise to save your script file immediately (press <code>Ctrl/Cmd</code> + <code>S</code>). This will open a dialogue box where you can indicate where to save your script file, and what to name it. The <code>.R</code> file extension is added automatically. Dont’ forget to save your work periodically by pressing <code>Ctrl/Cmd</code> + <code>S</code>.</p>
 </section>
-<section id="comments" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="comments"><span class="header-section-number">1.4</span> Comments</h2>
-<p>The comment character in R is <code>#</code>. Anything to the right of a <code>#</code> in a script will be ignored by R. This is useful for leaving notes and explanations in yoru scripts. RStudio provides a keyboard shortcut to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>C</code>. If you only want to comment out one line, you can put the cursor at any location of that line (i.e.&nbsp;no need to select the whole line), then press <code>Ctrl``/Cmd</code> + <code>Shift</code> + <code>C</code>.</p>
+<section id="comments" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="comments"><span class="header-section-number">2.4</span> Comments</h2>
+<p>The comment character in R is <code>#</code>. Anything to the right of a <code>#</code> in a script will be ignored by R. This is useful for leaving notes and explanations in yoru scripts. RStudio provides a keyboard shortcut to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>C</code>. If you only want to comment out one line, you can put the cursor at any location of that line (i.e., no need to select the whole line), then press <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>C</code>.</p>
 <p><em>Challenge</em></p>
 <p>What are the values after each statement in the following?</p>
 <div class="cell">
@@ -287,11 +303,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mass_index <span class="ot">&lt;-</span> mass<span class="sc">/</span>age  <span class="co"># mass_index?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="functions-and-their-arguments" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="functions-and-their-arguments"><span class="header-section-number">1.5</span> Functions and their arguments</h2>
+<section id="functions-and-their-arguments" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="functions-and-their-arguments"><span class="header-section-number">2.5</span> Functions and their arguments</h2>
+<p>Functions are pre-defined scripts that automate more complicated sets of commands. In addition functions built-in in R, more can be made available by importing R <em>packages</em> (more on that later). A function usually takes one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (output) is the square root of that number. Executing a function is called <em>calling</em> the function. An example of a function call is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">10</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.162278</code></pre>
+</div>
+</div>
+<p>Here, the <code>sqrt()</code> function calculates the square root of the value of 10 and the return value is assigned to <code>weight_kg</code>. This function takes one argument, other functions might take several.</p>
+<p>The return ‘value’ of a function need not be numerical (like that of <code>sqrt()</code>), and it also does not need to be a single item: it can be a set of things, or even a dataset. We’ll see that when we read data files into R.</p>
+<p>Arguments can be anything, not only numbers or filenames, but also other objects. Exactly what each argument means differs per function, and must be looked up in the documentation (see below). Some functions take arguments which may either be specified by the user, or, if left out, take on a <em>default</em> value. However, if you want something specific, you can specify a value of your choice which will be used instead of the default.</p>
+<p>Let’s try a function that can take multiple arguments: <code>round()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.2329</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>Here, we have called <code>round()</code> with just one argument, <code>3.1329234</code>, and it has returned the value <code>3</code>. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by looking at the documentation of the <code>round</code> function. We can look at the help for this function using <code>?round</code> or put your cursor on <code>round</code> and press F1.</p>
+<p>In the documentation, we see that in addition a number, <code>round()</code> also takes digits argument that accepts a number indicating the number of decimal places. The default value of <code>digits</code> is 0: return a whole number. If we want a different decimal number, change <code>digits</code> argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.2329</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.23</code></pre>
+</div>
+</div>
+<p>We can specify the argument value by position. Then, we don’t need to add argument name in the function call. In <code>round()</code>, the first argument is a number and the second <code>digits</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.2329</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.23</code></pre>
+</div>
+</div>
+<p>We can also specify the argument value by argument name.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="at">x =</span> <span class="fl">3.2329</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.23</code></pre>
+</div>
+</div>
+<p>This way the arguments can be in any position and is more fool-proof. Here, we specify <code>digits</code> first and <code>x</code> second.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>, <span class="at">x =</span> <span class="fl">3.2329</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.23</code></pre>
+</div>
+</div>
 </section>
-<section id="vectors-and-data-types" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="vectors-and-data-types"><span class="header-section-number">1.6</span> Vectors and data types</h2>
+<section id="vectors-and-data-types" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="vectors-and-data-types"><span class="header-section-number">2.6</span> Vectors and data types</h2>
+<p>A vector is the most basic and ubiqutous data type in R. A vector is composed by a series of values, which can be either numbers or characters. We can put together a series of values as a vector using the <code>c()</code> function. For example we can create a vector of body weights and assign it to a new object <code>weight_kg</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50 60 70 80</code></pre>
+</div>
+</div>
+<p>A vector can also contain characters:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Pakistan"</span>, <span class="st">"Singapore"</span>, <span class="st">"Bangladesh"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Pakistan"   "Singapore"  "Bangladesh"</code></pre>
+</div>
+</div>
+<p>Characters are quoted in R. Without the quotes, R assumes that objects with names <code>Pakistan</code>, <code>Singapore</code>, and <code>Bangladesh</code> already exists in the environment (memory) and will look for those objects. When they are not found, R throws an error message.</p>
+<p>There are many functions for vectors. <code>length()</code> returns the number of elements in a vector. The lengths of <code>weight_kg</code> and <code>countries</code> were 4 and 3, respectively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(weight_kg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(countries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>We can use <code>c()</code> to add more elements to a vector.</p>
+<p>Now, let’s add a new number at the end of <code>weight_kg</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="fu">c</span>(weight_kg, <span class="dv">99</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50 60 70 80 99</code></pre>
+</div>
+</div>
+<p>Next, add a new number at the beginning of <code>weight_kg</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>weight_kg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">40</span>, weight_kg)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>weight_kg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 40 50 60 70 80 99</code></pre>
+</div>
+</div>
+<p>An atomic vector is the simplest vector of the same data type. These are the basic building blocks that all R objects are built from. We have seen two data types above: <code>numeric</code> (<code>double</code>) and <code>character</code>. The other four atomic data types are:</p>
+<ul>
+<li><code>logical</code>: <code>TRUE</code> and <code>FALSE</code> (the boolean data type)</li>
+<li><code>integer</code>: Integer numbers (e.g., <code>2L</code>, the <code>L</code> indicates to R that it’s an integer)</li>
+<li><code>complex</code>: To represent complex numbers with real and imaginary parts (e.g., <code>1 + 4i</code>) and that’s all we’re going to say about them</li>
+<li><code>raw</code>: for bitstreams that we won’t discuss further</li>
+</ul>
+<p>Atomic vectors are one of the many data structures support by R. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>), factors (<code>factor</code>) and arrays (<code>array</code>).</p>
+<section id="challenge" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">2.6.1</span> Challenge</h3>
+<ul>
+<li>We've seen that atomic vectors can be of type character, numeric (or double), integer, and logical. But what happens if we try to mix these types in a single vector?</li>
+</ul>
+<p><em>R implicitly converts them to all be the same type</em></p>
+<ul>
+<li><p>What will happen in each of these examples? (hint: use <code>class()</code> to check the data type of your objects):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>num_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">"a"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>num_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>char_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>tricky <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">"4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
+<!-- -->
+<ul>
+<li>Why do you think it happens?</li>
+</ul>
+<p>Vectors can be of only one data type. R tries to convert (coerce) the content of this vector to find a "common denominator" that doesn't lose any information.</p>
+<ul>
+<li>How many values in <code>combined_logical</code> are <code>"TRUE"</code> (as a character) in the following example (reusing the 2 <code>..._logical</code>s from above):</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>combined_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(num_logical, char_logical)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>You've probably noticed that objects of different types get converted into a single, shared type within a vector. In R, we call converting objects from one class into another class <em>coercion</em>. These conversions happen according to a hierarchy, whereby some types get preferentially coerced into other types. Can you draw a diagram that represents the hierarchy of how these data types are coerced?</li>
+</ul>
+<p>logical → numeric → character ← logical</p>
+</section>
+</section>
+<section id="missing-data" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="missing-data"><span class="header-section-number">2.7</span> Missing data</h2>
+<p>In R, missing data are represented in vectors as <code>NA</code>. When doing operations on numbers, most functions will return <code>NA</code> if your data include missing values. This feature makes it harder to overlook missing data. You can add the argument <code>na.rm = TRUE</code> to calculate the result as if the missing values were removed (<code>rm</code> stands for ReMoved) first.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>height_cm <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">180</span>, <span class="cn">NA</span>, <span class="dv">167</span>, <span class="dv">177</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(height_cm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(height_cm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(height_cm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 171</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(height_cm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 180</code></pre>
+</div>
+</div>
+<p>If you want to programmatically check whether your data include <code>NA</code>, you can use <code>is.na()</code> to do it. The result is a logical vector of the same length with NA are indicated as <code>TRUE</code> and otherwise, <code>FALSE</code>. More on this later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(height_cm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -432,11 +609,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preparation</span>
+      <a href="./dataset.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./resources.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Resources</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
