@@ -407,11 +407,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>complex</code>: To represent complex numbers with real and imaginary parts (e.g., <code>1 + 4i</code>) and that’s all we’re going to say about them</li>
 <li><code>raw</code>: for bitstreams that we won’t discuss further</li>
 </ul>
+<p>You can also convert from one atomic data to another.</p>
+<ul>
+<li><code>as.numeric()</code>: Convert vector to a <code>double</code> vector</li>
+<li><code>as.integer()</code>: Convert vector to a <code>integer</code> vector</li>
+<li><code>as.character()</code>: Convert vector to a <code>character</code> vector</li>
+<li><code>as.logical()</code>: Convert vector to a <code>logical</code> vector</li>
+</ul>
 <p>Atomic vectors are one of the many data structures support by R. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>), factors (<code>factor</code>) and arrays (<code>array</code>).</p>
 <section id="challenge" class="level3" data-number="2.6.1">
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">2.6.1</span> Challenge</h3>
 <ul>
-<li>We've seen that atomic vectors can be of type character, numeric (or double), integer, and logical. But what happens if we try to mix these types in a single vector?</li>
+<li>We’ve seen that atomic vectors can be of type character, numeric (or double), integer, and logical. But what happens if we try to mix these types in a single vector?</li>
 </ul>
 <p><em>R implicitly converts them to all be the same type</em></p>
 <ul>
@@ -422,12 +429,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>char_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">TRUE</span>)</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>tricky <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">"4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
+<li><p>Why do you think it happens?</p></li>
 </ul>
-<!-- -->
-<ul>
-<li>Why do you think it happens?</li>
-</ul>
-<p>Vectors can be of only one data type. R tries to convert (coerce) the content of this vector to find a "common denominator" that doesn't lose any information.</p>
+<p>Vectors can be of only one data type. R tries to convert (coerce) the content of this vector to find a “common denominator” that doesn’t lose any information.</p>
 <ul>
 <li>How many values in <code>combined_logical</code> are <code>"TRUE"</code> (as a character) in the following example (reusing the 2 <code>..._logical</code>s from above):</li>
 </ul>
@@ -435,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>combined_logical <span class="ot">&lt;-</span> <span class="fu">c</span>(num_logical, char_logical)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>You've probably noticed that objects of different types get converted into a single, shared type within a vector. In R, we call converting objects from one class into another class <em>coercion</em>. These conversions happen according to a hierarchy, whereby some types get preferentially coerced into other types. Can you draw a diagram that represents the hierarchy of how these data types are coerced?</li>
+<li>You’ve probably noticed that objects of different types get converted into a single, shared type within a vector. In R, we call converting objects from one class into another class <em>coercion</em>. These conversions happen according to a hierarchy, whereby some types get preferentially coerced into other types. Can you draw a diagram that represents the hierarchy of how these data types are coerced?</li>
 </ul>
 <p>logical → numeric → character ← logical</p>
 </section>
