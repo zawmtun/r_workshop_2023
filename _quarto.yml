@@ -11,6 +11,8 @@ book:
     - intro.qmd
     # - dplyr.qmd
     # - subsetting.qmd
+    # - factors.qmd
+    # - reshape.qmd
     # - data_viz.qmd
     # - descriptive.qmd
     # - regress.qmd
