@@ -6,20 +6,16 @@ The example dataset is a simplified subset of the [Myanmar Demographic Health Su
 
 Maternal tetanus vaccination was defined as newborns protected against neonatal tetanus. According to the [Myanmar National Guidelines for Antenatal Care](https://themimu.info/sites/themimu.info/files/documents/Ref_Doc_National_Guidelines_for_Antenatal_Care_for_Service_Providers_May2018.pdf), a newborn is protected against neonatal tetanus if the mother has received any of the following:
 
-1\. Two injections of tetanus toxoid containing vaccine during the last pregnancy
-
-2\. Two or more injections, the last one within three years of the last pregnancy
-
-3\. Three or more injections, the last one within five years of the last pregnancy
-
-4\. Four or more injections, the last one within 10 years of the last pregnancy
-
+1\. Two injections of tetanus toxoid containing vaccine during the last pregnancy  
+2\. Two or more injections, the last one within three years of the last pregnancy  
+3\. Three or more injections, the last one within five years of the last pregnancy  
+4\. Four or more injections, the last one within 10 years of the last pregnancy. 
 5\. Five or more injections at any time prior to the last pregnancy
 
 Variable names and their labels are listed below:
 
 |         |                                   |                                                                       |
-|--------|--------------------------|----------------------------------------|
+|---------------|----------------------|-----------------------------------|
 | **No.** | **Variable name**                 | **Variable label**                                                    |
 | 1       | caseid                            | ID number of mothers                                                  |
 | 2       | age                               | Age in years                                                          |

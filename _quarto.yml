@@ -8,7 +8,7 @@ book:
   chapters:
     - index.qmd
     - dataset.qmd
-    # - intro.qmd
+    - intro.qmd
     # - dplyr.qmd
     # - subsetting.qmd
     # - data_viz.qmd
