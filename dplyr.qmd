@@ -241,9 +241,13 @@ dat <- dat |>
   mutate(
     birth_order_last_child = case_when(
       birth_order_last_child >= 4 ~ "4 and above",
-      .default = birth_order_last_child
+      .default = as.character(birth_order_last_child)
     )
   )
+
+dat |> 
+  select(birth_order_last_child) |> 
+  table()
 ```
 
 ## Aggregate
