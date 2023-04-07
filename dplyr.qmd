@@ -6,16 +6,28 @@ editor_options:
 
 # Managing data
 
+## Learning objective
+
+In this session, you will be able to understand:
+
+1.  How to read a CSV file
+2.  The concept of tidy data
+3.  How to select columns and filter rows in a dataframe
+4.  How to use pipe
+5.  How to create new columns in a dataframe
+6.  How to aggregate data to summary statistics
+
 *Load package*
 
 ```{r}
 library(tidyverse)
+library(janitor)
 ```
 
 *Read data*
 
 ```{r}
-surveys <- read_csv("dhs_myanmar_tetanus.csv")
+surveys <- read_csv("data/dhs_myanmar_tetanus.csv")
 ```
 
 `read_csv()` read in CSV file as a `data.frame`, a special data structure in R. `data.frame` is constructed by vectors: Each column is a vector and each vector has the same length.
@@ -40,10 +52,6 @@ We can also `View()` the dataframe like a spreadsheet. To do that, first put the
 
 ```{r}
 View(surveys)
-```
-
-```{r}
-# TODO: write about tidy data.
 ```
 
 ## Tidy data
@@ -105,18 +113,22 @@ Remove columns `record_id` and `species_id` from `surveys` dataset.
 select(surveys, -age, -education, -ancplace)
 ```
 
+### Practice
+
 ## Filter rows
 
 `filter()` should be used together with logical operators that compares one or two columns.
 
-**TODO: Add logical operators table**
-
--   `x < y`
--   `x > y`
--   `x <= y`
--   `x >= y`
--   `x == y`
--   `x != y`
+|             |                             |
+|-------------|-----------------------------|
+| `x < y`     | x is smaller than y         |
+| `x > y`     | x is greater than y         |
+| `x <= y`    | x is smaller and equal to y |
+| `x >= y`    | x is greater and equal to y |
+| `x == y`    | x is equal to y             |
+| `x != y`    | x is not equal to y         |
+| `x %in% y`  | x is in the list of y       |
+| `!x %in% y` | x is not in the list of y   |
 
 Here are a few examples;
 
@@ -150,7 +162,7 @@ The code below select rows within age range of 18 and 22.
 filter(surveys, age >= 18 & age <= 22)
 ```
 
-The code below select rows with mothers younger than 17 or older than 45. 
+The code below select rows with mothers younger than 17 or older than 45.
 
 ```{r}
 filter(surveys, age < 17 | age > 45)
@@ -190,9 +202,9 @@ surveys %>%
   select(age, residence, employ)
 ```
 
-## Challenge
+### Practice
 
-Using pipes, select the `surveys` data to include mothers gave birth to their last child at home and retain only columns `age`, `ancplace`, and `tetanus_vacc`
+From `surveys` data, filter mothers who gave birth to their last child at home and retain only columns `age`, `ancplace`, and `tetanus_vacc`
 
 ```{r}
 answer <- surveys |> 
@@ -227,17 +239,16 @@ dat <- surveys |>
   )
 ```
 
-Let's check if the grouping is done correctly.
+Let's check if the grouping is done correctly using `tabyl()`.
 
 ```{r}
 dat |> 
-  select(age, agegrp) |> 
-  table()
+  tabyl(age, agegrp)
 ```
 
-### Challenge
+### Practice
 
-Create a new dataframe from the surveys with a new column that lumps the birth order of last child of 4 and above into a single group. Name the new column as  `birth_order_last_child_grp`.
+Create a new dataframe from the surveys with a new column that lumps the birth order of last child of 4 and above into a single group. Name the new column as `birth_order_last_child_grp`.
 
 Hint: Think carefully about what to use as default.
 
@@ -304,14 +315,9 @@ surveys |>
   arrange(desc(min_weight))
 ```
 
-## Counting
-
 ```{r}
 surveys |>
     count(sex)
-
-class(surveys$sex)
-summary(surveys$sex)
 ```
 
 ```{r}
@@ -336,12 +342,12 @@ surveys |>
   arrange(species, desc(n))
 ```
 
-### Challenge
+### Practice
 
 1.  How many animals were caught in each plot_type surveyed?
 
 ```{r}
-surveys |> count(plot_type)
+surveys |> tabyl(plot_type)
 ```
 
 2.  Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).
@@ -380,4 +386,3 @@ test
 is_grouped_df(test)
 is_grouped_df(surveys)
 ```
-
