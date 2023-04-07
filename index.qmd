@@ -36,7 +36,7 @@ If you have installed an older version of R and RStudio or if you are not sure a
 
 ### Install necessary R packages
 
-We will need `tidyverse`, `broom`, `gtsummary`, `car`, `patchwork`, and `flextable` packages to follow the lessons. Once you open RStudio, you will see the R Console pane on the left-side of your screen.
+We will need `tidyverse`, `broom`, `gtsummary`, `car`, `patchwork`, `flextable`, and `janitor` packages to follow the lessons. Once you open RStudio, you will see the R Console pane on the left-side of your screen.
 
 ![](images/Screenshot%202023-03-30%20at%201.29.03%20AM.png){fig-alt="RStudio screenshot highlighting console" width="510"}
 
@@ -44,7 +44,7 @@ Please copy and paste the following code to R Console, next to `>` prompt and pr
 
 ```{r}
 #| eval: false
-install.packages(c("tidyverse", "broom", "gtsummary", "car", "patchwork", "flextable"))
+install.packages(c("tidyverse", "broom", "gtsummary", "car", "patchwork", "flextable", "janitor"))
 ```
 
 Alternatively, you can install the packages using RStudio's graphical user interface by going to `Tools > Install packages` and type the names of the packages separated by a comma.
@@ -59,6 +59,7 @@ library(car)
 library(patchwork)
 library(broom)
 library(flextable)
+library(janitor)
 ```
 
 If you do not see an error like `there is no package called ...`, the package installation was successful.

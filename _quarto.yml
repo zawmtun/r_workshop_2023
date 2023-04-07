@@ -10,13 +10,11 @@ book:
     - dataset.qmd
     - intro.qmd
     # - dplyr.qmd
-    # - subsetting.qmd
+    # - quarto.qmd
     # - factors.qmd
-    # - reshape.qmd
     # - data_viz.qmd
     # - descriptive.qmd
     # - regress.qmd
-    # - example_report.qmd
     - resources.qmd
 
 format:
