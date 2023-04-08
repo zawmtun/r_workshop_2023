@@ -4,7 +4,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Managing data
+## Data Wrangling
 
 ## Learning objective
 
@@ -20,8 +20,8 @@ In this session, you will be able to understand:
 *Load package*
 
 ```{r}
+#| message: false
 library(tidyverse)
-library(janitor)
 ```
 
 *Read data*
@@ -51,10 +51,19 @@ The output shows that there are 3867 rows and 15 columns. The column names are l
 We can also `View()` the dataframe like a spreadsheet. To do that, first put the cursor on the name of the dataframe and then press **F2**. Alternatively, you can type the following to the console:
 
 ```{r}
+#| eval: false
 View(surveys)
 ```
 
 ## Tidy data
+
+Tidy data is a specific data structure mapping to its meaning. A dataset is messy or tidy depending on how rows, columns and tables are matched up with observations, variables and types. In **tidy data**:
+
+1.  Every column is a variable.
+
+2.  Every row is an observation.
+
+3.  Every cell is a single value.
 
 ## `dplyr` functions
 
@@ -115,6 +124,12 @@ select(surveys, -age, -education, -ancplace)
 
 ### Practice
 
+Select all columns that does not start with `get_help`.
+
+```{r}
+select(surveys, -starts_with("get_help"))
+```
+
 ## Filter rows
 
 `filter()` should be used together with logical operators that compares one or two columns.
@@ -130,7 +145,9 @@ select(surveys, -age, -education, -ancplace)
 | `x %in% y`  | x is in the list of y       |
 | `!x %in% y` | x is not in the list of y   |
 
-Here are a few examples;
+: Table 1. Logical operators
+
+Here are a few examples:
 
 This code selects rows of mothers younger than 17.
 
@@ -152,6 +169,8 @@ filter(surveys, education == "Primary")
 
 We can also combine two or more logical comparisons using `&` (AND) and `|` (OR). For example, the code below selects rows of mothers younger than 17 residing in rural areas.
 
+![](images/Picture%201.png){width="231"}
+
 ```{r}
 filter(surveys, age < 17 & residence == "Rural")
 ```
@@ -168,6 +187,14 @@ The code below select rows with mothers younger than 17 or older than 45.
 filter(surveys, age < 17 | age > 45)
 ```
 
+### Practice
+
+Filter rows with mothers residing in rural areas with highest education of primary school who gave birth at a public health facility.
+
+```{r}
+filter(surveys, education == "Primary" & residence == "Rural" & ancplace == "Public health facilities")
+```
+
 ## Pipes
 
 Consider the following commands. We first select rows and feed the resulting dataframe to the following line to select columns.
@@ -178,23 +205,23 @@ surveys_demo <- select(surveys2, age, residence, employ)
 surveys_demo
 ```
 
-We can also nest these two functions together.
+Another option of doing the same thing is to nest these two functions together.
 
 ```{r}
 surveys_demo <- select(filter(surveys, age < 17), age, residence, employ)
 ```
 
-Let's use native pipe `|>` instead of nesting functions.
+We can also use pipe `|>`.
 
 ```{r}
-surveys_demo <- surveys |>
+surveys_demo <- surveys |> # and then; it plugs the output to the first position of the following row.
   filter(age < 17) |> 
   select(age, residence, employ)
 
 surveys_demo
 ```
 
-For demonstration, here is another commonly used pipe `%>%`.
+For completeness, here is another commonly used pipe `%>%`.
 
 ```{r}
 surveys %>%
@@ -204,14 +231,12 @@ surveys %>%
 
 ### Practice
 
-From `surveys` data, filter mothers who gave birth to their last child at home and retain only columns `age`, `ancplace`, and `tetanus_vacc`
+Using pipes, select the `surveys` data to include mothers gave birth to their last child at home and retain only columns `age`, `ancplace`, and `tetanus_vacc`
 
 ```{r}
-answer <- surveys |> 
+surveys |> 
   filter(ancplace == "Home") |> 
   select(age, ancplace, tetanus_vacc)
-
-answer
 ```
 
 ## Create new columns
@@ -224,7 +249,9 @@ surveys |>
   select(age, age2)
 ```
 
-Next, let's create a new column of age group including the following categories: 15-24, 25-29, 30-34, 34-49. To do that, we use `case_when()` in which each age group and the corresponding logical statement are linked using a `~`. `.default = "Unknown"` will label the rows that do not match any of the above conditions as Unknown.
+Next, let's create a new column of age group including the following categories: 15-24, 25-29, 30-34, 34-49.
+
+To do that, we use `case_when()` in which each age group and the corresponding logical statement are linked using a `~`. `.default = "Unknown"` will label the rows that do not match any of the above conditions as Unknown.
 
 ```{r}
 dat <- surveys |> 
@@ -239,11 +266,12 @@ dat <- surveys |>
   )
 ```
 
-Let's check if the grouping is done correctly using `tabyl()`.
+Let's check if the grouping is done correctly.
 
 ```{r}
 dat |> 
-  tabyl(age, agegrp)
+  select(age, agegrp) |> 
+  table()
 ```
 
 ### Practice
@@ -293,96 +321,95 @@ surveys |>
             min_age = min(age))
 ```
 
-Sort the results by `min_weight`.
+Sort the results by `min_age`.
 
 ```{r}
 surveys |>
-  filter(!is.na(weight)) |>
-  group_by(sex, species_id) |>
-  summarize(mean_weight = mean(weight),
-            min_weight = min(weight)) |>
-  arrange(min_weight)
+  group_by(residence, education) |>
+  summarize(mean_age = mean(age),
+            min_age = min(age)) |>
+  ungroup() |> 
+  arrange(min_age)
 ```
 
-Sort the results by `min_weight` in descending order.
+Sort the results by `min_age` in descending order.
 
 ```{r}
 surveys |>
-  filter(!is.na(weight)) |>
-  group_by(sex, species_id) |>
-  summarize(mean_weight = mean(weight),
-            min_weight = min(weight)) |>
-  arrange(desc(min_weight))
-```
-
-```{r}
-surveys |>
-    count(sex)
-```
-
-```{r}
-surveys |>
-    group_by(sex) |>
-    summarise(count = n())
-```
-
-```{r}
-surveys |>
-    count(sex, sort = TRUE)
-```
-
-```{r}
-surveys |>
-  count(sex, species)
-```
-
-```{r}
-surveys |>
-  count(sex, species) |>
-  arrange(species, desc(n))
+  group_by(residence, education) |>
+  summarize(mean_age = mean(age),
+            min_age = min(age)) |>
+  ungroup() |> 
+  arrange(-min_age)
 ```
 
 ### Practice
 
-1.  How many animals were caught in each plot_type surveyed?
+Find out average, minimum, and maximum of number of children (last birth order) by education. Sort the data by average number of children in descending order.
 
 ```{r}
-surveys |> tabyl(plot_type)
-```
-
-2.  Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).
-
-```{r}
-dat <- surveys |> 
-  group_by(species_id) |> 
-  summarise(
-    hf_mean = mean(hindfoot_length, na.rm = TRUE),
-    hf_min = min(hindfoot_length, na.rm = TRUE),
-    hf_max = max(hindfoot_length, na.rm = TRUE),
-    obs = n()
-  )
-```
-
-3.  What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight.
-
-```{r}
-dat <- surveys |> 
-  drop_na(weight) |>
-  group_by(year) |> 
-  mutate(wt_max = max(weight)) |> 
-  filter(weight == wt_max) |> 
+surveys |>
+  group_by(education) |>
+  summarize(mean_child = mean(birth_order_last_child),
+            min_child = min(birth_order_last_child),
+            max_child = max(birth_order_last_child)) |>
   ungroup() |> 
-  arrange(year) |> 
-  select(year, genus, species_id, weight) |> 
-  distinct()
+  arrange(-mean_child)
+```
 
-surveys
+## Aggregate - count the number of rows
 
-test <- surveys |> 
-  group_by(year)
+We can use `count()` to count the number of rows based on one or more variables.
 
-test
+Here, we count the number of mothers by `employ`.
 
-is_grouped_df(test)
-is_grouped_df(surveys)
+```{r}
+surveys |>
+  count(employ)
+```
+
+`count()` is a shorthand for `group_by()` and `summarise()`, using `n()`. (See `?n` for more details)
+
+```{r}
+surveys |>
+  group_by(employ) |>
+  summarise(count = n())
+```
+
+We can sort the count in descending order by changing `sort` argument to `TRUE` (default is `FALSE`).
+
+```{r}
+surveys |>
+  count(employ, sort = TRUE)
+```
+
+We can count by more than one variable. Here we count by `residence` and `employ`.
+
+```{r}
+surveys |>
+  count(residence, employ)
+```
+
+### *Practice*
+
+1.  Enumerate eligible mothers surveyed by their education attainment?
+
+```{r}
+surveys |> count(education)
+```
+
+2.  Count the mothers surveys by `state_region` and their `wealth` quantile?
+
+```{r}
+surveys |> count(state_region, wealth)
+```
+
+3.  What was the oldest `age` of mothers in each type of health facility where they gave birth (`ancplace`)? Sort the maximum age in descending order.
+
+```{r}
+dat <- surveys |> 
+  group_by(ancplace) |> 
+  summarise(age_max = max(age)) |> 
+  ungroup() |> 
+  arrange(-age_max)
 ```

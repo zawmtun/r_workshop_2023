@@ -9,7 +9,7 @@ book:
     - index.qmd
     - dataset.qmd
     - intro.qmd
-    # - dplyr.qmd
+    - dplyr.qmd
     # - quarto.qmd
     # - factors.qmd
     # - data_viz.qmd
