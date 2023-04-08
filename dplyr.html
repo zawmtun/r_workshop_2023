@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Data Analysis with R - 2&nbsp; Data management</title>
+<title>An Introduction to Data Analysis with R - 3&nbsp; Data Wrangling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./vectors.html" rel="next">
+<link href="./resources.html" rel="next">
 <link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data management</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Wrangling</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -100,37 +163,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./dataset.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Download the data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dplyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data management</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors and subsetting</span></a>
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_viz.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data visualisation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Descriptive analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./regress.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regression analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./resources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Resources</span></a>
   </div>
 </li>
     </ul>
@@ -138,14 +186,46 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objective" id="toc-learning-objective" class="nav-link active" data-scroll-target="#learning-objective"><span class="toc-section-number">3.1</span>  Learning objective</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data"><span class="toc-section-number">3.2</span>  Tidy data</a></li>
+  <li><a href="#dplyr-functions" id="toc-dplyr-functions" class="nav-link" data-scroll-target="#dplyr-functions"><span class="toc-section-number">3.3</span>  <code>dplyr</code> functions</a></li>
+  <li><a href="#select-columns" id="toc-select-columns" class="nav-link" data-scroll-target="#select-columns"><span class="toc-section-number">3.4</span>  Select columns</a>
+  <ul class="collapse">
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="toc-section-number">3.4.1</span>  Practice</a></li>
+  </ul></li>
+  <li><a href="#filter-rows" id="toc-filter-rows" class="nav-link" data-scroll-target="#filter-rows"><span class="toc-section-number">3.5</span>  Filter rows</a>
+  <ul class="collapse">
+  <li><a href="#practice-1" id="toc-practice-1" class="nav-link" data-scroll-target="#practice-1"><span class="toc-section-number">3.5.1</span>  Practice</a></li>
+  </ul></li>
+  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes"><span class="toc-section-number">3.6</span>  Pipes</a>
+  <ul class="collapse">
+  <li><a href="#practice-2" id="toc-practice-2" class="nav-link" data-scroll-target="#practice-2"><span class="toc-section-number">3.6.1</span>  Practice</a></li>
+  </ul></li>
+  <li><a href="#create-new-columns" id="toc-create-new-columns" class="nav-link" data-scroll-target="#create-new-columns"><span class="toc-section-number">3.7</span>  Create new columns</a>
+  <ul class="collapse">
+  <li><a href="#practice-3" id="toc-practice-3" class="nav-link" data-scroll-target="#practice-3"><span class="toc-section-number">3.7.1</span>  Practice</a></li>
+  </ul></li>
+  <li><a href="#aggregate" id="toc-aggregate" class="nav-link" data-scroll-target="#aggregate"><span class="toc-section-number">3.8</span>  Aggregate</a>
+  <ul class="collapse">
+  <li><a href="#practice-4" id="toc-practice-4" class="nav-link" data-scroll-target="#practice-4"><span class="toc-section-number">3.8.1</span>  Practice</a></li>
+  </ul></li>
+  <li><a href="#aggregate---count-the-number-of-rows" id="toc-aggregate---count-the-number-of-rows" class="nav-link" data-scroll-target="#aggregate---count-the-number-of-rows"><span class="toc-section-number">3.9</span>  Aggregate - count the number of rows</a>
+  <ul class="collapse">
+  <li><a href="#practice-5" id="toc-practice-5" class="nav-link" data-scroll-target="#practice-5"><span class="toc-section-number">3.9.1</span>  <em>Practice</em></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data management</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Wrangling</span></h1>
 </div>
 
 
@@ -160,8 +240,963 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="learning-objective" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objective"><span class="header-section-number">3.1</span> Learning objective</h2>
+<p>In this session, you will be able to understand:</p>
+<ol type="1">
+<li>How to read a CSV file</li>
+<li>The concept of tidy data</li>
+<li>How to select columns and filter rows in a dataframe</li>
+<li>How to use pipe</li>
+<li>How to create new columns in a dataframe</li>
+<li>How to aggregate data to summary statistics</li>
+</ol>
+<p><em>Load package</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Read data</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/dhs_myanmar_tetanus.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3867 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (12): state_region, residence, education, employ, wealth, get_help_permi...
+dbl  (3): caseid, age, birth_order_last_child
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p><code>read_csv()</code> read in CSV file as a <code>data.frame</code>, a special data structure in R. <code>data.frame</code> is constructed by vectors: Each column is a vector and each vector has the same length.</p>
+<p>Let’s print <code>surveys</code> directly in the console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>surveys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 15
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1      1    28 Region     Rural         1 Primary Agric… Third  Not a … By hus…
+ 2      2    39 Region     Rural         5 Primary Agric… Lowest Not a … Self   
+ 3      3    29 Region     Rural         3 Second… Sales  Lowest Not a … With h…
+ 4      4    30 Region     Rural         2 Primary Agric… Lowest Not a … By hus…
+ 5      5    28 Region     Rural         4 Primary Not w… Fourth Not a … Self   
+ 6      6    23 Region     Rural         1 Second… Agric… Fourth Not a … By hus…
+ 7      7    32 Region     Rural         4 Primary Not w… Lowest Not a … Self   
+ 8      8    32 Region     Rural         2 Primary Sales  Third  Not a … Self   
+ 9      9    46 Region     Rural         4 Primary Agric… Second Big pr… By hus…
+10     10    31 Region     Rural         1 Primary Agric… Second Not a … By hus…
+# … with 3,857 more rows, 5 more variables: get_help_not_go_alone &lt;chr&gt;,
+#   get_help_money &lt;chr&gt;, get_help_distance_health_facility &lt;chr&gt;,
+#   ancplace &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and abbreviated variable names
+#   ¹​state_region, ²​residence, ³​birth_order_last_child, ⁴​education,
+#   ⁵​get_help_permission, ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<p>The output shows that it is a <code>tibble</code>, a dataframe variant and the first 10 rows of the data with as many columns as the console screen can fit.</p>
+<p>We can have an overview of the data using <code>str()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(surveys)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [3,867 × 15] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ caseid                           : num [1:3867] 1 2 3 4 5 6 7 8 9 10 ...
+ $ age                              : num [1:3867] 28 39 29 30 28 23 32 32 46 31 ...
+ $ state_region                     : chr [1:3867] "Region" "Region" "Region" "Region" ...
+ $ residence                        : chr [1:3867] "Rural" "Rural" "Rural" "Rural" ...
+ $ birth_order_last_child           : num [1:3867] 1 5 3 2 4 1 4 2 4 1 ...
+ $ education                        : chr [1:3867] "Primary" "Primary" "Secondary" "Primary" ...
+ $ employ                           : chr [1:3867] "Agricultural" "Agricultural" "Sales" "Agricultural" ...
+ $ wealth                           : chr [1:3867] "Third" "Lowest" "Lowest" "Lowest" ...
+ $ get_help_permission              : chr [1:3867] "Not a big problem" "Not a big problem" "Not a big problem" "Not a big problem" ...
+ $ person_decides_healthcare        : chr [1:3867] "By husband, partner, or others" "Self" "With husband or partner" "By husband, partner, or others" ...
+ $ get_help_not_go_alone            : chr [1:3867] "Not a big problem" "Not a big problem" "Big problem" "Not a big problem" ...
+ $ get_help_money                   : chr [1:3867] "Big problem" "Big problem" "Big problem" "Not a big problem" ...
+ $ get_help_distance_health_facility: chr [1:3867] "Not a big problem" "Not a big problem" "Big problem" "Not a big problem" ...
+ $ ancplace                         : chr [1:3867] "Home" "Home" "Public health facilities" "Home" ...
+ $ tetanus_vacc                     : chr [1:3867] "Vaccinated" "Vaccinated" "Vaccinated" "Vaccinated" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   caseid = col_double(),
+  ..   age = col_double(),
+  ..   state_region = col_character(),
+  ..   residence = col_character(),
+  ..   birth_order_last_child = col_double(),
+  ..   education = col_character(),
+  ..   employ = col_character(),
+  ..   wealth = col_character(),
+  ..   get_help_permission = col_character(),
+  ..   person_decides_healthcare = col_character(),
+  ..   get_help_not_go_alone = col_character(),
+  ..   get_help_money = col_character(),
+  ..   get_help_distance_health_facility = col_character(),
+  ..   ancplace = col_character(),
+  ..   tetanus_vacc = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+<p>The output shows that there are 3867 rows and 15 columns. The column names are listed following <code>$</code>. It also shows data type and first few values of each column.</p>
+<p>We can also <code>View()</code> the dataframe like a spreadsheet. To do that, first put the cursor on the name of the dataframe and then press <strong>F2</strong>. Alternatively, you can type the following to the console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(surveys)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tidy-data" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="tidy-data"><span class="header-section-number">3.2</span> Tidy data</h2>
+<p>Tidy data is a specific data structure mapping to its meaning. A dataset is messy or tidy depending on how rows, columns and tables are matched up with observations, variables and types. In <strong>tidy data</strong>:</p>
+<ol type="1">
+<li><p>Every column is a variable.</p></li>
+<li><p>Every row is an observation.</p></li>
+<li><p>Every cell is a single value.</p></li>
+</ol>
+</section>
+<section id="dplyr-functions" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="dplyr-functions"><span class="header-section-number">3.3</span> <code>dplyr</code> functions</h2>
+<p><code>dplyr</code> package consists of the following basic verbs in managing a dataframe.</p>
+<ul>
+<li><code>select()</code>: Select columns</li>
+<li><code>filter()</code>: Select rows based on conditions</li>
+<li><code>mutate()</code>: Create new columns</li>
+<li><code>group_by()</code> and <code>summarize()</code>: Create summary statistics on grouped data</li>
+<li><code>arrange()</code>: Sort results</li>
+<li><code>count()</code>: Count discrete values</li>
+</ul>
+</section>
+<section id="select-columns" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="select-columns"><span class="header-section-number">3.4</span> Select columns</h2>
+<p>We can keep columns of a dataframe by name. The code below keep <code>age</code>, <code>education</code>, <code>ancplace</code> from <code>surveys</code> dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, age, education, ancplace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 3
+     age education ancplace                
+   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                   
+ 1    28 Primary   Home                    
+ 2    39 Primary   Home                    
+ 3    29 Secondary Public health facilities
+ 4    30 Primary   Home                    
+ 5    28 Primary   Public health facilities
+ 6    23 Secondary Home                    
+ 7    32 Primary   Public health facilities
+ 8    32 Primary   Public health facilities
+ 9    46 Primary   Public health facilities
+10    31 Primary   None                    
+# … with 3,857 more rows</code></pre>
+</div>
+</div>
+<p>We can also select columns by sequence number (index) of columns. Let’s say we would like to keep first, third, and fifth columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 3
+   caseid state_region birth_order_last_child
+    &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;
+ 1      1 Region                            1
+ 2      2 Region                            5
+ 3      3 Region                            3
+ 4      4 Region                            2
+ 5      5 Region                            4
+ 6      6 Region                            1
+ 7      7 Region                            4
+ 8      8 Region                            2
+ 9      9 Region                            4
+10     10 Region                            1
+# … with 3,857 more rows</code></pre>
+</div>
+</div>
+<p>There are a few helper functions that allows us to select columns more efficiently. These include:</p>
+<ul>
+<li><code>starts_with()</code> : Starts with an exact prefix.</li>
+<li><code>ends_with()</code> : Ends with an exact suffix.</li>
+<li><code>contains()</code> : Contains a literal string.</li>
+<li><code>matches()</code> : Matches a regular expression.</li>
+<li><code>num_range()</code> : Matches a numerical range like x01, x02, x03.</li>
+</ul>
+<p>For example, we can select columns that starts with <code>get_help</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, <span class="fu">starts_with</span>(<span class="st">"get_help"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 4
+   get_help_permission get_help_not_go_alone get_help_money    get_help_distan…¹
+   &lt;chr&gt;               &lt;chr&gt;                 &lt;chr&gt;             &lt;chr&gt;            
+ 1 Not a big problem   Not a big problem     Big problem       Not a big problem
+ 2 Not a big problem   Not a big problem     Big problem       Not a big problem
+ 3 Not a big problem   Big problem           Big problem       Big problem      
+ 4 Not a big problem   Not a big problem     Not a big problem Not a big problem
+ 5 Not a big problem   Not a big problem     Big problem       Big problem      
+ 6 Not a big problem   Not a big problem     Not a big problem Not a big problem
+ 7 Not a big problem   Big problem           Not a big problem Big problem      
+ 8 Not a big problem   Big problem           Not a big problem Not a big problem
+ 9 Big problem         Big problem           Big problem       Not a big problem
+10 Not a big problem   Big problem           Not a big problem Not a big problem
+# … with 3,857 more rows, and abbreviated variable name
+#   ¹​get_help_distance_health_facility</code></pre>
+</div>
+</div>
+<p>What if we want to select columns that contains <code>health</code> in their names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, <span class="fu">contains</span>(<span class="st">"health"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 2
+   person_decides_healthcare      get_help_distance_health_facility
+   &lt;chr&gt;                          &lt;chr&gt;                            
+ 1 By husband, partner, or others Not a big problem                
+ 2 Self                           Not a big problem                
+ 3 With husband or partner        Big problem                      
+ 4 By husband, partner, or others Not a big problem                
+ 5 Self                           Big problem                      
+ 6 By husband, partner, or others Not a big problem                
+ 7 Self                           Big problem                      
+ 8 Self                           Not a big problem                
+ 9 By husband, partner, or others Not a big problem                
+10 By husband, partner, or others Not a big problem                
+# … with 3,857 more rows</code></pre>
+</div>
+</div>
+<p>We can combine the helper functions with other selection methods. Here, we select <code>caseid</code>, <code>age</code>, and columns that starts with <code>get_help</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, caseid, age, <span class="fu">starts_with</span>(<span class="st">"get_help"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 6
+   caseid   age get_help_permission get_help_not_go_alone get_help_money get_h…¹
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;                 &lt;chr&gt;          &lt;chr&gt;  
+ 1      1    28 Not a big problem   Not a big problem     Big problem    Not a …
+ 2      2    39 Not a big problem   Not a big problem     Big problem    Not a …
+ 3      3    29 Not a big problem   Big problem           Big problem    Big pr…
+ 4      4    30 Not a big problem   Not a big problem     Not a big pro… Not a …
+ 5      5    28 Not a big problem   Not a big problem     Big problem    Big pr…
+ 6      6    23 Not a big problem   Not a big problem     Not a big pro… Not a …
+ 7      7    32 Not a big problem   Big problem           Not a big pro… Big pr…
+ 8      8    32 Not a big problem   Big problem           Not a big pro… Not a …
+ 9      9    46 Big problem         Big problem           Big problem    Not a …
+10     10    31 Not a big problem   Big problem           Not a big pro… Not a …
+# … with 3,857 more rows, and abbreviated variable name
+#   ¹​get_help_distance_health_facility</code></pre>
+</div>
+</div>
+<p>Remove columns <code>record_id</code> and <code>species_id</code> from <code>surveys</code> dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, <span class="sc">-</span>age, <span class="sc">-</span>education, <span class="sc">-</span>ancplace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 12
+   caseid state_…¹ resid…² birth…³ employ wealth get_h…⁴ perso…⁵ get_h…⁶ get_h…⁷
+    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1      1 Region   Rural         1 Agric… Third  Not a … By hus… Not a … Big pr…
+ 2      2 Region   Rural         5 Agric… Lowest Not a … Self    Not a … Big pr…
+ 3      3 Region   Rural         3 Sales  Lowest Not a … With h… Big pr… Big pr…
+ 4      4 Region   Rural         2 Agric… Lowest Not a … By hus… Not a … Not a …
+ 5      5 Region   Rural         4 Not w… Fourth Not a … Self    Not a … Big pr…
+ 6      6 Region   Rural         1 Agric… Fourth Not a … By hus… Not a … Not a …
+ 7      7 Region   Rural         4 Not w… Lowest Not a … Self    Big pr… Not a …
+ 8      8 Region   Rural         2 Sales  Third  Not a … Self    Big pr… Not a …
+ 9      9 Region   Rural         4 Agric… Second Big pr… By hus… Big pr… Big pr…
+10     10 Region   Rural         1 Agric… Second Not a … By hus… Big pr… Not a …
+# … with 3,857 more rows, 2 more variables:
+#   get_help_distance_health_facility &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and
+#   abbreviated variable names ¹​state_region, ²​residence,
+#   ³​birth_order_last_child, ⁴​get_help_permission, ⁵​person_decides_healthcare,
+#   ⁶​get_help_not_go_alone, ⁷​get_help_money</code></pre>
+</div>
+</div>
+<section id="practice" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="practice"><span class="header-section-number">3.4.1</span> Practice</h3>
+<p>Select all columns that does not start with <code>get_help</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(surveys, <span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"get_help"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 11
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth perso…⁵ ancpl…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1      1    28 Region     Rural         1 Primary Agric… Third  By hus… Home   
+ 2      2    39 Region     Rural         5 Primary Agric… Lowest Self    Home   
+ 3      3    29 Region     Rural         3 Second… Sales  Lowest With h… Public…
+ 4      4    30 Region     Rural         2 Primary Agric… Lowest By hus… Home   
+ 5      5    28 Region     Rural         4 Primary Not w… Fourth Self    Public…
+ 6      6    23 Region     Rural         1 Second… Agric… Fourth By hus… Home   
+ 7      7    32 Region     Rural         4 Primary Not w… Lowest Self    Public…
+ 8      8    32 Region     Rural         2 Primary Sales  Third  Self    Public…
+ 9      9    46 Region     Rural         4 Primary Agric… Second By hus… Public…
+10     10    31 Region     Rural         1 Primary Agric… Second By hus… None   
+# … with 3,857 more rows, 1 more variable: tetanus_vacc &lt;chr&gt;, and abbreviated
+#   variable names ¹​state_region, ²​residence, ³​birth_order_last_child,
+#   ⁴​education, ⁵​person_decides_healthcare, ⁶​ancplace</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="filter-rows" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="filter-rows"><span class="header-section-number">3.5</span> Filter rows</h2>
+<p><code>filter()</code> should be used together with logical operators that compares one or two columns.</p>
+<table class="table">
+<caption>Table 1. Logical operators</caption>
+<tbody>
+<tr class="odd">
+<td><code>x &lt; y</code></td>
+<td>x is smaller than y</td>
+</tr>
+<tr class="even">
+<td><code>x &gt; y</code></td>
+<td>x is greater than y</td>
+</tr>
+<tr class="odd">
+<td><code>x &lt;= y</code></td>
+<td>x is smaller and equal to y</td>
+</tr>
+<tr class="even">
+<td><code>x &gt;= y</code></td>
+<td>x is greater and equal to y</td>
+</tr>
+<tr class="odd">
+<td><code>x == y</code></td>
+<td>x is equal to y</td>
+</tr>
+<tr class="even">
+<td><code>x != y</code></td>
+<td>x is not equal to y</td>
+</tr>
+<tr class="odd">
+<td><code>x %in% y</code></td>
+<td>x is in the list of y</td>
+</tr>
+<tr class="even">
+<td><code>!x %in% y</code></td>
+<td>x is not in the list of y</td>
+</tr>
+</tbody>
+</table>
+<p>Here are a few examples:</p>
+<p>This code selects rows of mothers younger than 17.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, age <span class="sc">&lt;</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 15
+  caseid   age state_reg…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+1     61    16 Region      Rural         1 Second… Manual Lowest Not a … With h…
+2   1330    16 State       Rural         1 Primary Agric… Lowest Not a … With h…
+3   1861    16 State       Rural         1 Second… Not w… Second Not a … &lt;NA&gt;   
+4   1865    16 State       Rural         1 Second… Not w… Fourth Not a … With h…
+5   1918    15 State       Rural         1 Primary Not w… Lowest Not a … With h…
+6   3219    16 Region      Urban         1 Second… Not w… Second Not a … By hus…
+7   3423    15 State       Rural         1 No edu… Other  Fourth Not a … With h…
+8   3826    16 State       Rural         1 Primary Not w… Fourth Not a … With h…
+# … with 5 more variables: get_help_not_go_alone &lt;chr&gt;, get_help_money &lt;chr&gt;,
+#   get_help_distance_health_facility &lt;chr&gt;, ancplace &lt;chr&gt;,
+#   tetanus_vacc &lt;chr&gt;, and abbreviated variable names ¹​state_region,
+#   ²​residence, ³​birth_order_last_child, ⁴​education, ⁵​get_help_permission,
+#   ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<p>This code selects rows of mothers residing in rural areas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, residence <span class="sc">==</span> <span class="st">"Rural"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,986 × 15
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1      1    28 Region     Rural         1 Primary Agric… Third  Not a … By hus…
+ 2      2    39 Region     Rural         5 Primary Agric… Lowest Not a … Self   
+ 3      3    29 Region     Rural         3 Second… Sales  Lowest Not a … With h…
+ 4      4    30 Region     Rural         2 Primary Agric… Lowest Not a … By hus…
+ 5      5    28 Region     Rural         4 Primary Not w… Fourth Not a … Self   
+ 6      6    23 Region     Rural         1 Second… Agric… Fourth Not a … By hus…
+ 7      7    32 Region     Rural         4 Primary Not w… Lowest Not a … Self   
+ 8      8    32 Region     Rural         2 Primary Sales  Third  Not a … Self   
+ 9      9    46 Region     Rural         4 Primary Agric… Second Big pr… By hus…
+10     10    31 Region     Rural         1 Primary Agric… Second Not a … By hus…
+# … with 2,976 more rows, 5 more variables: get_help_not_go_alone &lt;chr&gt;,
+#   get_help_money &lt;chr&gt;, get_help_distance_health_facility &lt;chr&gt;,
+#   ancplace &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and abbreviated variable names
+#   ¹​state_region, ²​residence, ³​birth_order_last_child, ⁴​education,
+#   ⁵​get_help_permission, ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<p>This code selects rows of mothers who completed primary school.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, education <span class="sc">==</span> <span class="st">"Primary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,698 × 15
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1      1    28 Region     Rural         1 Primary Agric… Third  Not a … By hus…
+ 2      2    39 Region     Rural         5 Primary Agric… Lowest Not a … Self   
+ 3      4    30 Region     Rural         2 Primary Agric… Lowest Not a … By hus…
+ 4      5    28 Region     Rural         4 Primary Not w… Fourth Not a … Self   
+ 5      7    32 Region     Rural         4 Primary Not w… Lowest Not a … Self   
+ 6      8    32 Region     Rural         2 Primary Sales  Third  Not a … Self   
+ 7      9    46 Region     Rural         4 Primary Agric… Second Big pr… By hus…
+ 8     10    31 Region     Rural         1 Primary Agric… Second Not a … By hus…
+ 9     11    39 Region     Rural         3 Primary Agric… Third  Not a … By hus…
+10     13    42 Region     Rural         2 Primary Not w… Lowest Not a … Self   
+# … with 1,688 more rows, 5 more variables: get_help_not_go_alone &lt;chr&gt;,
+#   get_help_money &lt;chr&gt;, get_help_distance_health_facility &lt;chr&gt;,
+#   ancplace &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and abbreviated variable names
+#   ¹​state_region, ²​residence, ³​birth_order_last_child, ⁴​education,
+#   ⁵​get_help_permission, ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<p>We can also combine two or more logical comparisons using <code>&amp;</code> (AND) and <code>|</code> (OR). For example, the code below selects rows of mothers younger than 17 residing in rural areas.</p>
+<p><img src="images/Picture 1.png" class="img-fluid" width="231"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, age <span class="sc">&lt;</span> <span class="dv">17</span> <span class="sc">&amp;</span> residence <span class="sc">==</span> <span class="st">"Rural"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 15
+  caseid   age state_reg…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+1     61    16 Region      Rural         1 Second… Manual Lowest Not a … With h…
+2   1330    16 State       Rural         1 Primary Agric… Lowest Not a … With h…
+3   1861    16 State       Rural         1 Second… Not w… Second Not a … &lt;NA&gt;   
+4   1865    16 State       Rural         1 Second… Not w… Fourth Not a … With h…
+5   1918    15 State       Rural         1 Primary Not w… Lowest Not a … With h…
+6   3423    15 State       Rural         1 No edu… Other  Fourth Not a … With h…
+7   3826    16 State       Rural         1 Primary Not w… Fourth Not a … With h…
+# … with 5 more variables: get_help_not_go_alone &lt;chr&gt;, get_help_money &lt;chr&gt;,
+#   get_help_distance_health_facility &lt;chr&gt;, ancplace &lt;chr&gt;,
+#   tetanus_vacc &lt;chr&gt;, and abbreviated variable names ¹​state_region,
+#   ²​residence, ³​birth_order_last_child, ⁴​education, ⁵​get_help_permission,
+#   ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<p>The code below select rows within age range of 18 and 22.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">22</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 415 × 15
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1     19    19 State      Rural         1 Second… Manual Lowest Not a … By hus…
+ 2     27    21 State      Urban         3 Primary Not w… Lowest Not a … Self   
+ 3     38    20 Region     Rural         2 Primary Not w… Lowest Not a … With h…
+ 4     45    21 State      Rural         1 Primary Manual Fourth Not a … Self   
+ 5     54    21 Region     Rural         1 More t… Not w… Highe… Not a … By hus…
+ 6     58    22 Region     Rural         2 Primary Not w… Lowest Not a … Self   
+ 7     69    20 State      Rural         1 Second… Not w… Third  Not a … Self   
+ 8     70    19 State      Rural         1 Second… Manual Fourth Not a … Self   
+ 9    117    22 State      Rural         2 No edu… Manual Second Not a … By hus…
+10    122    19 State      Rural         2 No edu… Not w… Second Not a … With h…
+# … with 405 more rows, 5 more variables: get_help_not_go_alone &lt;chr&gt;,
+#   get_help_money &lt;chr&gt;, get_help_distance_health_facility &lt;chr&gt;,
+#   ancplace &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and abbreviated variable names
+#   ¹​state_region, ²​residence, ³​birth_order_last_child, ⁴​education,
+#   ⁵​get_help_permission, ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<p>The code below select rows with mothers younger than 17 or older than 45.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, age <span class="sc">&lt;</span> <span class="dv">17</span> <span class="sc">|</span> age <span class="sc">&gt;</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 79 × 15
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1      9    46 Region     Rural         4 Primary Agric… Second Big pr… By hus…
+ 2     23    46 State      Rural         7 Second… Manual Fourth Not a … With h…
+ 3     61    16 Region     Rural         1 Second… Manual Lowest Not a … With h…
+ 4     80    46 State      Rural         8 Primary Not w… Second Not a … With h…
+ 5     93    46 Region     Rural         6 Primary Manual Highe… Not a … With h…
+ 6    104    46 State      Rural         4 Primary Sales  Third  Not a … Self   
+ 7    130    47 State      Urban         3 More t… Other  Fourth Not a … &lt;NA&gt;   
+ 8    220    46 Region     Rural         8 No edu… Agric… Third  Not a … Self   
+ 9    310    46 State      Rural         8 Primary Not w… Third  Not a … By hus…
+10    315    46 State      Rural         9 Primary Manual Highe… Not a … By hus…
+# … with 69 more rows, 5 more variables: get_help_not_go_alone &lt;chr&gt;,
+#   get_help_money &lt;chr&gt;, get_help_distance_health_facility &lt;chr&gt;,
+#   ancplace &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and abbreviated variable names
+#   ¹​state_region, ²​residence, ³​birth_order_last_child, ⁴​education,
+#   ⁵​get_help_permission, ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+<section id="practice-1" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="practice-1"><span class="header-section-number">3.5.1</span> Practice</h3>
+<p>Filter rows with mothers residing in rural areas with highest education of primary school who gave birth at a public health facility.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(surveys, education <span class="sc">==</span> <span class="st">"Primary"</span> <span class="sc">&amp;</span> residence <span class="sc">==</span> <span class="st">"Rural"</span> <span class="sc">&amp;</span> ancplace <span class="sc">==</span> <span class="st">"Public health facilities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 857 × 15
+   caseid   age state_re…¹ resid…² birth…³ educa…⁴ employ wealth get_h…⁵ perso…⁶
+    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  
+ 1      5    28 Region     Rural         4 Primary Not w… Fourth Not a … Self   
+ 2      7    32 Region     Rural         4 Primary Not w… Lowest Not a … Self   
+ 3      8    32 Region     Rural         2 Primary Sales  Third  Not a … Self   
+ 4      9    46 Region     Rural         4 Primary Agric… Second Big pr… By hus…
+ 5     20    45 State      Rural         8 Primary Not w… Third  Not a … Self   
+ 6     21    37 State      Rural         6 Primary Not w… Lowest Not a … Self   
+ 7     34    32 Region     Rural         3 Primary Sales  Highe… Not a … With h…
+ 8     35    38 Region     Rural         2 Primary Sales  Fourth Not a … Self   
+ 9     38    20 Region     Rural         2 Primary Not w… Lowest Not a … With h…
+10     39    28 State      Rural         2 Primary Manual Second Big pr… With h…
+# … with 847 more rows, 5 more variables: get_help_not_go_alone &lt;chr&gt;,
+#   get_help_money &lt;chr&gt;, get_help_distance_health_facility &lt;chr&gt;,
+#   ancplace &lt;chr&gt;, tetanus_vacc &lt;chr&gt;, and abbreviated variable names
+#   ¹​state_region, ²​residence, ³​birth_order_last_child, ⁴​education,
+#   ⁵​get_help_permission, ⁶​person_decides_healthcare</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="pipes" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="pipes"><span class="header-section-number">3.6</span> Pipes</h2>
+<p>Consider the following commands. We first select rows and feed the resulting dataframe to the following line to select columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>surveys2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(surveys, age <span class="sc">&lt;</span> <span class="dv">17</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>surveys_demo <span class="ot">&lt;-</span> <span class="fu">select</span>(surveys2, age, residence, employ)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>surveys_demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+    age residence employ      
+  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       
+1    16 Rural     Manual      
+2    16 Rural     Agricultural
+3    16 Rural     Not working 
+4    16 Rural     Not working 
+5    15 Rural     Not working 
+6    16 Urban     Not working 
+7    15 Rural     Other       
+8    16 Rural     Not working </code></pre>
+</div>
+</div>
+<p>Another option of doing the same thing is to nest these two functions together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>surveys_demo <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(surveys, age <span class="sc">&lt;</span> <span class="dv">17</span>), age, residence, employ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also use pipe <code>|&gt;</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>surveys_demo <span class="ot">&lt;-</span> surveys <span class="sc">|&gt;</span> <span class="co"># and then; it plugs the output to the first position of the following row.</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">17</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, residence, employ)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>surveys_demo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+    age residence employ      
+  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       
+1    16 Rural     Manual      
+2    16 Rural     Agricultural
+3    16 Rural     Not working 
+4    16 Rural     Not working 
+5    15 Rural     Not working 
+6    16 Urban     Not working 
+7    15 Rural     Other       
+8    16 Rural     Not working </code></pre>
+</div>
+</div>
+<p>For completeness, here is another commonly used pipe <code>%&gt;%</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">17</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, residence, employ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+    age residence employ      
+  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       
+1    16 Rural     Manual      
+2    16 Rural     Agricultural
+3    16 Rural     Not working 
+4    16 Rural     Not working 
+5    15 Rural     Not working 
+6    16 Urban     Not working 
+7    15 Rural     Other       
+8    16 Rural     Not working </code></pre>
+</div>
+</div>
+<section id="practice-2" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="practice-2"><span class="header-section-number">3.6.1</span> Practice</h3>
+<p>Using pipes, select the <code>surveys</code> data to include mothers gave birth to their last child at home and retain only columns <code>age</code>, <code>ancplace</code>, and <code>tetanus_vacc</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ancplace <span class="sc">==</span> <span class="st">"Home"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, ancplace, tetanus_vacc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 583 × 3
+     age ancplace tetanus_vacc
+   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;       
+ 1    28 Home     Vaccinated  
+ 2    39 Home     Vaccinated  
+ 3    30 Home     Vaccinated  
+ 4    23 Home     Vaccinated  
+ 5    39 Home     Unvaccinated
+ 6    42 Home     Vaccinated  
+ 7    44 Home     Unvaccinated
+ 8    21 Home     Vaccinated  
+ 9    36 Home     Unvaccinated
+10    27 Home     Vaccinated  
+# … with 573 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="create-new-columns" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="create-new-columns"><span class="header-section-number">3.7</span> Create new columns</h2>
+<p>Let’s create a new column that has double the age of mothers. Then, select the original and the newly created column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age2 =</span> age <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, age2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,867 × 2
+     age  age2
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1    28    56
+ 2    39    78
+ 3    29    58
+ 4    30    60
+ 5    28    56
+ 6    23    46
+ 7    32    64
+ 8    32    64
+ 9    46    92
+10    31    62
+# … with 3,857 more rows</code></pre>
+</div>
+</div>
+<p>Next, let’s create a new column of age group including the following categories: 15-24, 25-29, 30-34, 34-49.</p>
+<p>To do that, we use <code>case_when()</code> in which each age group and the corresponding logical statement are linked using a <code>~</code>. <code>.default = "Unknown"</code> will label the rows that do not match any of the above conditions as Unknown.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> surveys <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">agegrp =</span> <span class="fu">case_when</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>      age <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">24</span> <span class="sc">~</span> <span class="st">"15-24"</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>      age <span class="sc">&gt;=</span> <span class="dv">25</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">"25-29"</span>,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>      age <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">34</span> <span class="sc">~</span> <span class="st">"30-34"</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>      age <span class="sc">&gt;=</span> <span class="dv">35</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">49</span> <span class="sc">~</span> <span class="st">"34-49"</span>,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"Unknown"</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s check if the grouping is done correctly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age, agegrp) <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    agegrp
+age  15-24 25-29 30-34 34-49
+  15     2     0     0     0
+  16     6     0     0     0
+  17     7     0     0     0
+  18    21     0     0     0
+  19    59     0     0     0
+  20    94     0     0     0
+  21   105     0     0     0
+  22   136     0     0     0
+  23   139     0     0     0
+  24   152     0     0     0
+  25     0   179     0     0
+  26     0   196     0     0
+  27     0   225     0     0
+  28     0   202     0     0
+  29     0   191     0     0
+  30     0     0   222     0
+  31     0     0   185     0
+  32     0     0   195     0
+  33     0     0   179     0
+  34     0     0   169     0
+  35     0     0     0   173
+  36     0     0     0   132
+  37     0     0     0   157
+  38     0     0     0   129
+  39     0     0     0   123
+  40     0     0     0   128
+  41     0     0     0    86
+  42     0     0     0    76
+  43     0     0     0    40
+  44     0     0     0    51
+  45     0     0     0    37
+  46     0     0     0    40
+  47     0     0     0    16
+  48     0     0     0    14
+  49     0     0     0     1</code></pre>
+</div>
+</div>
+<section id="practice-3" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="practice-3"><span class="header-section-number">3.7.1</span> Practice</h3>
+<p>Create a new dataframe from the surveys with a new column that lumps the birth order of last child of 4 and above into a single group. Name the new column as <code>birth_order_last_child_grp</code>.</p>
+<p>Hint: Think carefully about what to use as default.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">birth_order_last_child =</span> <span class="fu">case_when</span>(</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>      birth_order_last_child <span class="sc">&gt;=</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"4 and above"</span>,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="fu">as.character</span>(birth_order_last_child)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span> </span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(birth_order_last_child) <span class="sc">|&gt;</span> </span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>birth_order_last_child
+          1           2           3 4 and above 
+       1225         949         650        1043 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="aggregate" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="aggregate"><span class="header-section-number">3.8</span> Aggregate</h2>
+<p>We often want to summarise data by aggregating the data. Here, we calculate the average age by <code>residence</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(residence) <span class="sc">|&gt;</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  residence mean_age
+  &lt;chr&gt;        &lt;dbl&gt;
+1 Rural         31.1
+2 Urban         30.8</code></pre>
+</div>
+</div>
+<p>Now, let’s get average age by <code>residence</code> and <code>education</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(residence, education) <span class="sc">|&gt;</span> </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'residence'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+# Groups:   residence [2]
+  residence education           mean_age
+  &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;
+1 Rural     More than secondary     31.3
+2 Rural     No education            32.6
+3 Rural     Primary                 31.7
+4 Rural     Secondary               28.8
+5 Urban     More than secondary     31.4
+6 Urban     No education            33.7
+7 Urban     Primary                 31.6
+8 Urban     Secondary               29.8</code></pre>
+</div>
+</div>
+<p>We can also aggregate using multiple summary measures in one <code>summarise()</code> call. Now, let’s get average and minimum age by <code>residence</code> and <code>education</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(residence, education) <span class="sc">|&gt;</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_age =</span> <span class="fu">min</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'residence'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+# Groups:   residence [2]
+  residence education           mean_age min_age
+  &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;   &lt;dbl&gt;
+1 Rural     More than secondary     31.3      21
+2 Rural     No education            32.6      15
+3 Rural     Primary                 31.7      15
+4 Rural     Secondary               28.8      16
+5 Urban     More than secondary     31.4      21
+6 Urban     No education            33.7      18
+7 Urban     Primary                 31.6      18
+8 Urban     Secondary               29.8      16</code></pre>
+</div>
+</div>
+<p>Sort the results by <code>min_age</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(residence, education) <span class="sc">|&gt;</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_age =</span> <span class="fu">min</span>(age)) <span class="sc">|&gt;</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(min_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'residence'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+  residence education           mean_age min_age
+  &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;   &lt;dbl&gt;
+1 Rural     No education            32.6      15
+2 Rural     Primary                 31.7      15
+3 Rural     Secondary               28.8      16
+4 Urban     Secondary               29.8      16
+5 Urban     No education            33.7      18
+6 Urban     Primary                 31.6      18
+7 Rural     More than secondary     31.3      21
+8 Urban     More than secondary     31.4      21</code></pre>
+</div>
+</div>
+<p>Sort the results by <code>min_age</code> in descending order.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(residence, education) <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_age =</span> <span class="fu">min</span>(age)) <span class="sc">|&gt;</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>min_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'residence'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+  residence education           mean_age min_age
+  &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;   &lt;dbl&gt;
+1 Rural     More than secondary     31.3      21
+2 Urban     More than secondary     31.4      21
+3 Urban     No education            33.7      18
+4 Urban     Primary                 31.6      18
+5 Rural     Secondary               28.8      16
+6 Urban     Secondary               29.8      16
+7 Rural     No education            32.6      15
+8 Rural     Primary                 31.7      15</code></pre>
+</div>
+</div>
+<section id="practice-4" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="practice-4"><span class="header-section-number">3.8.1</span> Practice</h3>
+<p>Find out average, minimum, and maximum of number of children (last birth order) by education. Sort the data by average number of children in descending order.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(education) <span class="sc">|&gt;</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_child =</span> <span class="fu">mean</span>(birth_order_last_child),</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_child =</span> <span class="fu">min</span>(birth_order_last_child),</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_child =</span> <span class="fu">max</span>(birth_order_last_child)) <span class="sc">|&gt;</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>mean_child)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  education           mean_child min_child max_child
+  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 No education              4.11         1        12
+2 Primary                   3.03         1        12
+3 Secondary                 2.11         1        12
+4 More than secondary       1.63         1        10</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="aggregate---count-the-number-of-rows" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="aggregate---count-the-number-of-rows"><span class="header-section-number">3.9</span> Aggregate - count the number of rows</h2>
+<p>We can use <code>count()</code> to count the number of rows based on one or more variables.</p>
+<p>Here, we count the number of mothers by <code>employ</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(employ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  employ           n
+  &lt;chr&gt;        &lt;int&gt;
+1 Agricultural   609
+2 Manual        1034
+3 Not working   1393
+4 Other          249
+5 Sales          573
+6 &lt;NA&gt;             9</code></pre>
+</div>
+</div>
+<p><code>count()</code> is a shorthand for <code>group_by()</code> and <code>summarise()</code>, using <code>n()</code>. (See <code>?n</code> for more details)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(employ) <span class="sc">|&gt;</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  employ       count
+  &lt;chr&gt;        &lt;int&gt;
+1 Agricultural   609
+2 Manual        1034
+3 Not working   1393
+4 Other          249
+5 Sales          573
+6 &lt;NA&gt;             9</code></pre>
+</div>
+</div>
+<p>We can sort the count in descending order by changing <code>sort</code> argument to <code>TRUE</code> (default is <code>FALSE</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(employ, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  employ           n
+  &lt;chr&gt;        &lt;int&gt;
+1 Not working   1393
+2 Manual        1034
+3 Agricultural   609
+4 Sales          573
+5 Other          249
+6 &lt;NA&gt;             9</code></pre>
+</div>
+</div>
+<p>We can count by more than one variable. Here we count by <code>residence</code> and <code>employ</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(residence, employ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   residence employ           n
+   &lt;chr&gt;     &lt;chr&gt;        &lt;int&gt;
+ 1 Rural     Agricultural   583
+ 2 Rural     Manual         869
+ 3 Rural     Not working   1059
+ 4 Rural     Other          120
+ 5 Rural     Sales          350
+ 6 Rural     &lt;NA&gt;             5
+ 7 Urban     Agricultural    26
+ 8 Urban     Manual         165
+ 9 Urban     Not working    334
+10 Urban     Other          129
+11 Urban     Sales          223
+12 Urban     &lt;NA&gt;             4</code></pre>
+</div>
+</div>
+<section id="practice-5" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="practice-5"><span class="header-section-number">3.9.1</span> <em>Practice</em></h3>
+<ol type="1">
+<li>Enumerate eligible mothers surveyed by their education attainment?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> <span class="fu">count</span>(education)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  education               n
+  &lt;chr&gt;               &lt;int&gt;
+1 More than secondary   302
+2 No education          622
+3 Primary              1698
+4 Secondary            1245</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Count the mothers surveys by <code>state_region</code> and their <code>wealth</code> quantile?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> <span class="fu">count</span>(state_region, wealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   state_region wealth      n
+   &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt;
+ 1 Region       Fourth    338
+ 2 Region       Highest   317
+ 3 Region       Lowest    499
+ 4 Region       Second    451
+ 5 Region       Third     367
+ 6 State        Fourth    289
+ 7 State        Highest   243
+ 8 State        Lowest    561
+ 9 State        Second    411
+10 State        Third     391</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>What was the oldest <code>age</code> of mothers in each type of health facility where they gave birth (<code>ancplace</code>)? Sort the maximum age in descending order.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> surveys <span class="sc">|&gt;</span> </span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ancplace) <span class="sc">|&gt;</span> </span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">age_max =</span> <span class="fu">max</span>(age)) <span class="sc">|&gt;</span> </span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>age_max)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -300,12 +1335,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./vectors.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vectors and subsetting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./resources.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Resources</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
