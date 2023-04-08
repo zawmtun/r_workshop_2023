@@ -407,7 +407,7 @@ surveys |> count(state_region, wealth)
 3.  What was the oldest `age` of mothers in each type of health facility where they gave birth (`ancplace`)? Sort the maximum age in descending order.
 
 ```{r}
-dat <- surveys |> 
+surveys |> 
   group_by(ancplace) |> 
   summarise(age_max = max(age)) |> 
   ungroup() |> 
