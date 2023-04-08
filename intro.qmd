@@ -82,7 +82,7 @@ Until now, we have been typing code into the console. This is useful for quick q
 
 The comment character in R is `#`. Anything to the right of a `#` in a script will be ignored by R. This is useful for leaving notes and explanations in yoru scripts. RStudio provides a keyboard shortcut to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard `Ctrl/Cmd` + `Shift` + `C`. If you only want to comment out one line, you can put the cursor at any location of that line (i.e., no need to select the whole line), then press `Ctrl/Cmd` + `Shift` + `C`.
 
-*Challenge*
+*Practice*
 
 What are the values after each statement in the following?
 
@@ -198,7 +198,7 @@ You can also convert from one atomic data to another.
 
 Atomic vectors are one of the many data structures support by R. Other important ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`), factors (`factor`) and arrays (`array`).
 
-### Challenge
+### Practice
 
 -   We've seen that atomic vectors can be of type character, numeric (or double), integer, and logical. But what happens if we try to mix these types in a single vector?
 
