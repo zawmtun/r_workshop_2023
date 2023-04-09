@@ -2,6 +2,17 @@
 
 Most of this chapter are adapted from [Data Carpentry's data analysis and visualization in R for ecologists](https://datacarpentry.org/R-ecology-lesson/index.html)
 
+Learning objectives of this chapter were to understand:
+
+1.  RStudio interface
+2.  Inserting sections
+3.  R object assignment
+4.  Variable naming conventions
+5.  Commenting in scripts
+6.  Functions
+7.  Vectors
+8.  Missing data
+
 ## Creating objects in R
 
 You get output from R simply by typing math in the console.
