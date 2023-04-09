@@ -5,7 +5,7 @@
 In this session, you will be able to understand:
 
 1.  The basics of ggplot2 package
-2.  How to create box plot, scatter plot, and bar plot
+2.  How to create scatter plot, box plot, and bar plot
 3.  Faceting
 4.  How to customise plots (themes)
 5.  Arranging plots
@@ -22,7 +22,7 @@ library(patchwork)
 *Read data*
 
 ```{r}
-surveys_complete <- read_csv("data/dhs_myanmar_tetanus.csv")
+surveys_new <- read_csv("data/surveys_new.csv")
 ```
 
 Ggplot2
@@ -32,28 +32,27 @@ Ggplot2
 ## Base plot
 
 ```{r}
-ggplot(data = surveys_complete,
-       mapping = aes(x = weight, y = hindfoot_length))
+ggplot(data = surveys_new,
+       mapping = aes(x = education, y = age))
 ```
 
 Add geom layer.
 
 ```{r}
-ggplot(data = surveys_complete,
-       mapping = aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_new,
+       mapping = aes(x = age, y = birth_order_last_child)) +
   geom_point()
 ```
 
-Assign plot to a name.
+Assign plot to an object.
 
 ```{r}
-surveys_plot <- ggplot(data = surveys_complete,
-                       mapping = aes(x = weight, y = hindfoot_length))
+p1 <- ggplot(data = surveys_new,
+             mapping = aes(x = age, y = birth_order_last_child))
 
-surveys_plot
+p1
 
-surveys_plot +
-  geom_point()
+p1 + geom_point()
 ```
 
 ## Build your plots iteratively
@@ -61,47 +60,64 @@ surveys_plot +
 Below is the earlier plot.
 
 ```{r}
-ggplot(data = surveys_complete,
-       aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_new,
+       aes(x = age, y = birth_order_last_child)) +
   geom_point()
 ```
 
-The points are too cramped and overlapped. Let's make the points more transparent by adding a transparency parameter (alpha) in `geom_point()` that ranges from 0 (totally transparent) to 1 (totally opaque).
+The plot shows that the birth order of the last child is higher among older women. That makes sense.
+
+But the points are too cramped and overlapped. Let's make the points more transparent by adding a transparency parameter (alpha) in `geom_point()`. Alpha ranges from 0 (totally transparent) to 1 (totally opaque).
 
 ```{r}
-ggplot(data = surveys_complete,
-       aes(x = weight, y = hindfoot_length)) +
-  geom_point(alpha = 0.1)
+ggplot(data = surveys_new,
+       aes(x = age, y = birth_order_last_child)) +
+  geom_point(alpha = 0.2)
 ```
+
+This looks better - we can now see that the points are clustered in the lower middle region between 20-35 years age group. But these points are still overlapping with each other, making it difficult to interpret.
+
+Let's disperse the points a little bit in random direction. We can do that using `geom_jitter()`.
+
+```{r}
+ggplot(data = surveys_new,
+       aes(x = age, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2)
+```
+
+Now, we see that most points are clustered between 20 and 30 years of age.
 
 Now add a colour to all points.
 
 ```{r}
-ggplot(data = surveys_complete,
-       aes(x = weight, y = hindfoot_length)) +
-  geom_point(alpha = 0.1, colour = "blue")
+ggplot(data = surveys_new,
+       aes(x = age, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2, colour = "blue")
 ```
 
-We can also add colours by species (use `species_id`). When the parameter value is a variable, we need to wrap `colour` in `aes()`.
+We can also add colours by urban/rural residence (use `residence`). When the parameter value is a variable, we need to wrap `colour` in `aes()`.
 
 ```{r}
-ggplot(data = surveys_complete,
-       aes(x = weight, y = hindfoot_length)) +
-  geom_point(alpha = 0.1, aes(colour = species_id))
+ggplot(data = surveys_new,
+       aes(x = age, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2, aes(colour = residence))
 ```
+
+We do not see any obvious difference in the distribution between urban and rural populations.
 
 ## Boxplot
 
 ```{r}
-ggplot(data = surveys_complete,
-       mapping = aes(x = species_id, y = weight)) +
+ggplot(data = surveys_new,
+       mapping = aes(x = education, y = birth_order_last_child)) +
     geom_boxplot()
 ```
 
 We can overlay points to the corresponding boxplot to have a better idea of the distribution of the measurements.
 
 ```{r}
-ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+ggplot(data = surveys_new,
+       mapping = aes(x = education, y = birth_order_last_child)) +
     geom_boxplot(alpha = 0) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ```
@@ -109,170 +125,145 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 Now the boxplot is behind the points. Let's change the code to bring the boxplot to the front.
 
 ```{r}
-ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+ggplot(data = surveys_new,
+       mapping = aes(x = education, y = birth_order_last_child)) +
     geom_jitter(alpha = 0.3, color = "tomato") +
     geom_boxplot(alpha = 0)
 ```
 
 ### Practice
 
-Boxplots are useful summaries, but hide the shape of the distribution. For example, if there is a bimodal distribution, it would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.
+1.  Boxplots are useful summaries, but hide the shape of the distribution. For example, if there is a bimodal distribution, it would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.
 
 Replace the box plot with a violin plot; see `geom_violin()`.
 
 ```{r}
-ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+ggplot(data = surveys_new,
+       mapping = aes(x = education, y = birth_order_last_child)) +
   geom_violin()
 ```
 
-In many types of data, it is important to consider the scale of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands). Try making these modifications:
+2.  So far, we've looked at the distribution of birth order within education attainment categories. Try making a new plot to explore the distribution of another variable within education attainment categories.
 
-Represent weight on the log10 scale; see `scale_y_log10()`.
+-   Create boxplot for birth order. Overlay the boxplot layer on a jitter layer to show actual measurements.
 
-```{r}
-ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
-  geom_violin() +
-  scale_y_log10() +
-  labs(y = "Weight (Log scale)", x = "Species")
-```
-
-So far, we've looked at the distribution of weight within species. Try making a new plot to explore the distribution of another variable within each species. \* Create boxplot for hindfoot_length. Overlay the boxplot layer on a jitter layer to show actual measurements. \* Add color to the data points on your boxplot according to the plot from which the sample was taken (plot_id).
-
-Hint: Check the class for plot_id. Consider changing the class of plot_id from integer to factor. Why does this change how R makes the graph?
+-   Add color to the data points on your boxplot according to urban/rural residence.
 
 ```{r}
-box_plot_species <- ggplot(data = surveys_complete,
-                           mapping = aes(x = species_id, y = hindfoot_length)) +
-  geom_jitter(alpha = 0.2, colour = c("#009E4F")) +
-  geom_boxplot(alpha = 0) +
-  labs(y = NULL, x = "Species", title = "Hindfoot length distribution by species")
-```
+ggplot(data = surveys_new,
+       mapping = aes(x = education, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2, aes(colour = residence)) +
+  geom_boxplot(alpha = 0)
 
-## Time series plots
+```
 
 ## Bar plots
 
-Let's count the number of animals per year for each genus.
+Let's count the mothers by their employment.
 
 ```{r}
-yearly_counts <- surveys_complete |> 
-  count(year, genus)
+surveys_new |> 
+  count(wealth)
 ```
 
-Timelapse data are often visualised as a line plot with years on x-axis and counts on y-axis.
+We can use a bar chart to display the distribution of wealth quantiles. Let's plot the employment on X-axis.
 
 ```{r}
-ggplot(data = yearly_counts, aes(x = year, y = n)) +
-     geom_line()
+ggplot(data = surveys_new, aes(x = wealth)) +
+     geom_bar()
 ```
 
-But this does not work becuase we plotted data for all the genera together. We need to tell ggplot to draw a line for each genus by adding `group` aesthetic: `griuop = genu`
+Let's tell ggplot to plot each wealth quintile using a distinct colour.
 
 ```{r}
-ggplot(data = yearly_counts, aes(x = year, y = n, group = genus)) +
-    geom_line()
+ggplot(data = surveys_new, aes(x = wealth, fill = wealth)) +
+    geom_bar()
 ```
 
-Let's tell ggplot to plot each genus using a distinct colour.
+Since the first argument of `ggplot()` is a dataframe for the plot, we can use `|>` to add data to `ggplot()`.
 
 ```{r}
-ggplot(data = yearly_counts, aes(x = year, y = n,
-                                 group = genus, colour = genus)) +
-    geom_line()
+surveys_new |> 
+  ggplot(aes(x = wealth, fill = wealth)) +
+  geom_bar()
 ```
 
-Since the first argument of `ggplot()` is a dataframe for the plot, we can use to add data to `ggplot()`.
+### Practice
+
+We have plotted wealth quintile vertically earlier. Now, plot the bars horizontally.
 
 ```{r}
-yearly_counts |> 
-  ggplot(aes(x = year, y = n,
-             group = genus, colour = genus)) +
-  geom_line()
-```
-
-If we don't want to save a separate dataframe `yearly_counts`, we can just pipe its code directly into `ggplot()` like this.
-
-```{r}
-surveys_complete |> 
-  count(year, genus) |> 
-  ggplot(aes(x = year, y = n,
-             group = genus, colour = genus)) +
-  geom_line()
+surveys_new |> 
+  ggplot(aes(y = wealth, fill = wealth)) +
+  geom_bar()
 ```
 
 ## Faceting
 
-Let's facet our data by `genus` using `facet_wrap()`.
+Faceting is a powerful technique to plot subsets of data.
+
+Let's plot wealth quintile horizontally and facet our data by `residence` using `facet_wrap()`.
 
 ```{r}
-ggplot(data = yearly_counts, aes(x = year, y = n)) +
-    geom_line() +
-    facet_wrap(facets = vars(genus))
+ggplot(data = surveys_new, aes(y = wealth, fill = wealth)) +
+    geom_bar() +
+    facet_wrap(facets = vars(residence))
 ```
 
 Note that we need to wrap the facetting variable in `vars()`.
 
-Now, let's disaggregate data in each facet by sex using `facet_wrap()`.
+Now, let's disaggregate data in each facet by tetanus vaccination status using `facet_wrap()`.
 
 ```{r}
-yearly_sex_counts <- surveys_complete %>%
-  count(year, genus, sex)
-
-ggplot(yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(facets =  vars(genus))
+ggplot(surveys_new, aes(y = wealth, fill = tetanus_vacc)) +
+  geom_bar() +
+  facet_wrap(facets =  vars(residence))
 ```
 
 `facet_wrap()` show the panels in one dimension with titles at the top.
 
-We can also facet by both sex and genus. Now, we want to facet the plot in two dimensions: genus on x-axis (panel title at the top) and sex on y-axis (panel title on the side). For that, we need to use `facet_wrap()`.
+We can also facet by both residence and tetanus vaccination status. Now, we want to facet the plot in two dimensions: residence on x-axis (panel title at the top) and age group on y-axis (panel title on the side). For that, we need to use `facet_grid()`.
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_grid(rows = vars(sex), cols =  vars(genus))
+ggplot(surveys_new, aes(y = wealth, fill = tetanus_vacc)) +
+  geom_bar() +
+  facet_grid(rows = vars(agegrp), cols =  vars(residence))
 ```
 
 You can also show the panels by rows.
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_grid(rows = vars(genus))
+ggplot(surveys_new, aes(y = wealth, fill = tetanus_vacc)) +
+  geom_bar() +
+  facet_grid(rows = vars(agegrp))
 ```
 
 Or by columns.
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_grid(cols = vars(genus))
+ggplot(surveys_new, aes(y = wealth, fill = tetanus_vacc)) +
+  geom_bar() +
+  facet_grid(cols = vars(agegrp))
 ```
 
 ## Themes
 
-In addition geoms and facets, we can change how the plot looks like background colour, axis grids, font type/size, etc by using generic `theme()` function, as we will see below. There are also pre-defined themes already built in `ggplot2`. In the code below, `theme_bw()` produce a white background and dark panel borders.
+In addition geoms and facets, we can change how the plot looks, like background colour, axis grids, font type/size, etc by using generic `theme()` function, as we will see below. There are also pre-defined themes already built in `ggplot2`. In the code below, `theme_bw()` produce a white background and dark panel borders, replacing the default grey background and white borders.
 
 ```{r}
-ggplot(data = yearly_sex_counts,
-       mapping = aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
+ggplot(surveys_new, aes(y = wealth, fill = tetanus_vacc)) +
+  geom_bar() +
+  facet_wrap(vars(residence)) +
   theme_bw()
 ```
 
 There are several other pre-defined themes that come with `ggplot2`.
 
 -   `theme_linedraw()`
-
 -   `theme_light()`
-
 -   `theme_dark()`
-
 -   `theme_minimal()`
-
 -   `theme_classic()`
-
 -   `theme_void()`
 
 The `ggthemes` package provides a wide variety of options.
@@ -282,18 +273,20 @@ The `ggthemes` package provides a wide variety of options.
 Try different pre-defined themes from ggplot2 in the code below:
 
 ```{r}
-ggplot(data = yearly_sex_counts,
-       mapping = aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
+ggplot(surveys_new, aes(y = wealth, fill = residence)) +
+  geom_bar() +
+  facet_wrap(vars(residence)) +
   theme_bw()
 ```
 
-Use what you just learned to create a plot that depicts how the average weight of each species changes through the years.
+Use the theming you just learned to create a plot to show distribution of birth order of last child by education attainment faceted by residence.
 
 ```{r}
-
-
+ggplot(surveys_new, aes(x = education, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2, colour = "salmon") +
+  geom_boxplot(alpha = 0) +
+  facet_wrap(vars(residence)) +
+  theme_bw()
 ```
 
 ## Customisation
@@ -301,55 +294,45 @@ Use what you just learned to create a plot that depicts how the average weight o
 Take a look at the plot below and think of ways you could improve it.
 
 ```{r}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
+ggplot(surveys_new, aes(y = wealth, fill = residence)) +
+  geom_bar() +
+  facet_wrap(vars(residence)) +
   theme_bw()
 ```
 
-First, let's change the axis titles to something more informative than `n` and `year`. Then, add a plot title. We will use `labs()` for that.
+First, let's change the axis titles to something more informative than `count` and `wealth`. Then, add a plot title. We will use `labs()` for that.
 
 ```{r}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
-  labs(title = "Observed genera through time",
-       x = "Year of observation",
-       y = "Number of individuals") +
+ggplot(surveys_new, aes(y = wealth, fill = residence)) +
+  geom_bar() +
+  labs(x = "Number of mothers", y = "Wealth quintile",
+       title = "Wealth quintile distribution by urban and rural residence") +
+  facet_wrap(vars(residence)) +
   theme_bw()
 ```
 
 Next, let's increase the font size to the texts more readable. We can do it using the generic `theme()` function.
 
 ```{r}
-ggplot(data = yearly_sex_counts,
-       mapping = aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
-  labs(title = "Observed genera through time",
-       x = "Year of observation",
-       y = "Number of individuals") +
+ggplot(surveys_new, aes(y = wealth, fill = residence)) +
+  geom_bar() +
+  labs(x = "Number of mothers", y = "Wealth quintile",
+       title = "Wealth quintile distribution by urban and rural residence") +
+  facet_wrap(vars(residence)) +
   theme_bw() +
   theme(text = element_text(size = 16))
 ```
 
-Years on x-axis are not readable at the moment as the years overlap. Let's change the orientation of these axis labels to an angle. We can also experiment with different angles.
-
-We can also change the facet label text (`strip.text`) to italicize the genus names.
+We can change the facet label text (`strip.text`) to italicize the genus names.
 
 ```{r}
-ggplot(data = yearly_sex_counts,
-       mapping = aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
-  labs(title = "Observed genera through time",
-       x = "Year of observation",
-       y = "Number of individuals") +
+ggplot(surveys_new, aes(y = wealth, fill = residence)) +
+  geom_bar() +
+  labs(x = "Number of mothers", y = "Wealth quintile",
+       title = "Wealth quintile distribution by urban and rural residence") +
+  facet_wrap(vars(residence)) +
   theme_bw() +
   theme(
-    axis.text.x = element_text(colour = "grey20", size = 12,
-                               angle = 45, hjust = 0.9, vjust = 0.9),
-    axis.text.y = element_text(colour = "grey20", size = 12),
     strip.text = element_text(face = "italic"),
     text = element_text(size = 16)
   )
@@ -360,29 +343,26 @@ If you want to apply the same theme to other plots, we can save the theme as a R
 ```{r}
 my_theme <- theme_bw() +
   theme(
-    axis.text.x = element_text(colour = "grey20", size = 12,
-                               angle = 45, hjust = 0.9, vjust = 0.9),
-    axis.text.y = element_text(colour = "grey20", size = 12),
     strip.text = element_text(face = "italic"),
     text = element_text(size = 16)
   )
 
-ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
-  geom_boxplot() +
+ggplot(surveys_new, aes(x = education, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2, colour = "salmon") +
+  geom_boxplot(alpha = 0) +
+  facet_wrap(vars(residence)) +
   my_theme
 ```
 
 ### Practice
 
-With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration.
+With all of this information in hand, please take another five minutes to either improve the plot above.
 
 Here are some ideas:
 
--   See if you can change the thickness of the lines.
-
--   Can you find a way to change the name of the legend? What about its labels?
-
--   Try using a different color palette (see <https://www.cookbook-r.com/Graphs/Colors_(ggplot2)/>).
+-   X-axis texts are not visible. See if you can rotate it to a certain degree.
+-   Add titles for axes and a plot title.
+-   Vertical gridlines seems redundant. Remove them.
 
 ## Arranging plots
 
@@ -397,16 +377,16 @@ After loading patchwork package, we now can use `+` to combine two plots side-by
 ```{r}
 library(patchwork)
 
-plot_weight <- ggplot(surveys_complete, aes(x = species_id, y = weight)) +
-  geom_boxplot() +
-  labs(x = "Species", y = expression(log[10](Weight))) +
-  scale_y_log10()
+p_birth <- ggplot(data = surveys_new,
+             aes(x = age, y = birth_order_last_child)) +
+  geom_jitter(alpha = 0.2, aes(colour = residence)) +
+  labs(x = "Age of mothers", y = "Birth order of last child")
 
-plot_count <- ggplot(yearly_counts, aes(x = year, y = n, color = genus)) +
-  geom_line() +
-  labs(x = "Year", y = "Abundance")
+p_wealth <- ggplot(surveys_new, aes(y = wealth, fill = wealth)) +
+  geom_bar() +
+  labs(x = "Number of mothers", y = "Wealth quintile")
 
-plot_weight / plot_count + 
+p_birth / p_wealth + 
   plot_layout(heights = c(3, 2))
 ```
 
@@ -421,26 +401,26 @@ Export button in the Plots pane allows us to save the plot at low resolution by 
 If you want to save the plot programmatically, we can use `ggsave()` function to do it. We can also easily add the dimension parameters: `height`, `width`, and `dpi`.
 
 ```{r}
-my_plot <- ggplot(yearly_sex_counts, aes(x = year, y = n, color = sex)) +
-  geom_line() +
-  facet_wrap(vars(genus)) +
-  labs(title = "Observed genera through time",
-       x = "Year of observation",
-       y = "Number of individuals") +
+my_plot <-
+  ggplot(surveys_new, aes(y = wealth, fill = residence)) +
+  geom_bar() +
+  labs(x = "Number of mothers", y = "Wealth quintile",
+       title = "Wealth quintile distribution by urban and rural residence") +
+  facet_wrap(vars(residence)) +
   theme_bw() +
-  theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90,
-                                   hjust = 0.5, vjust = 0.5),
-        axis.text.y = element_text(colour = "grey20", size = 12),
-        text = element_text(size = 16))
-
-ggsave("name_of_file.png", my_plot, width = 15, height = 10)
+  theme(
+    strip.text = element_text(face = "italic"),
+    text = element_text(size = 16)
+  )
+  
+ggsave("figs/wealth_by_residence.png", my_plot, width = 15, height = 10)
 ```
 
 This also works for plots combined with patchwork.
 
 ```{r}
-plot_combined <- plot_weight / plot_count +
+plot_combined <- p_birth / p_wealth + 
   plot_layout(heights = c(3, 2))
-
-ggsave("plot_combined.png", plot_combined, width = 10, dpi = 300)
+  
+ggsave("figs/plot_combined.png", plot_combined, width = 10, dpi = 300)
 ```

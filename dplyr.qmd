@@ -254,7 +254,7 @@ Next, let's create a new column of age group including the following categories:
 To do that, we use `case_when()` in which each age group and the corresponding logical statement are linked using a `~`. `.default = "Unknown"` will label the rows that do not match any of the above conditions as Unknown.
 
 ```{r}
-dat <- surveys |> 
+surveys_new <- surveys |> 
   mutate(
     agegrp = case_when(
       age >= 15 & age <= 24 ~ "15-24",
@@ -281,16 +281,16 @@ Create a new dataframe from the surveys with a new column that lumps the birth o
 Hint: Think carefully about what to use as default.
 
 ```{r}
-dat <- dat |> 
+surveys_new <- surveys_new |> 
   mutate(
-    birth_order_last_child = case_when(
+    birth_order_last_child_grp = case_when(
       birth_order_last_child >= 4 ~ "4 and above",
       .default = as.character(birth_order_last_child)
     )
   )
 
-dat |> 
-  select(birth_order_last_child) |> 
+surveys_new |> 
+  select(birth_order_last_child, birth_order_last_child_grp) |> 
   table()
 ```
 
@@ -299,7 +299,7 @@ dat |>
 We often want to summarise data by aggregating the data. Here, we calculate the average age by `residence`.
 
 ```{r}
-surveys |> 
+surveys_new |> 
   group_by(residence) |> 
   summarize(mean_age = mean(age))
 ```
@@ -307,7 +307,7 @@ surveys |>
 Now, let's get average age by `residence` and `education`.
 
 ```{r}
-surveys |> 
+surveys_new |> 
   group_by(residence, education) |> 
   summarize(mean_age = mean(age))
 ```
@@ -315,7 +315,7 @@ surveys |>
 We can also aggregate using multiple summary measures in one `summarise()` call. Now, let's get average and minimum age by `residence` and `education`.
 
 ```{r}
-surveys |>
+surveys_new |>
   group_by(residence, education) |>
   summarize(mean_age = mean(age),
             min_age = min(age))
@@ -324,7 +324,7 @@ surveys |>
 Sort the results by `min_age`.
 
 ```{r}
-surveys |>
+surveys_new |>
   group_by(residence, education) |>
   summarize(mean_age = mean(age),
             min_age = min(age)) |>
@@ -335,7 +335,7 @@ surveys |>
 Sort the results by `min_age` in descending order.
 
 ```{r}
-surveys |>
+surveys_new |>
   group_by(residence, education) |>
   summarize(mean_age = mean(age),
             min_age = min(age)) |>
@@ -348,7 +348,7 @@ surveys |>
 Find out average, minimum, and maximum of number of children (last birth order) by education. Sort the data by average number of children in descending order.
 
 ```{r}
-surveys |>
+surveys_new |>
   group_by(education) |>
   summarize(mean_child = mean(birth_order_last_child),
             min_child = min(birth_order_last_child),
@@ -364,14 +364,14 @@ We can use `count()` to count the number of rows based on one or more variables.
 Here, we count the number of mothers by `employ`.
 
 ```{r}
-surveys |>
+surveys_new |>
   count(employ)
 ```
 
 `count()` is a shorthand for `group_by()` and `summarise()`, using `n()`. (See `?n` for more details)
 
 ```{r}
-surveys |>
+surveys_new |>
   group_by(employ) |>
   summarise(count = n())
 ```
@@ -379,37 +379,46 @@ surveys |>
 We can sort the count in descending order by changing `sort` argument to `TRUE` (default is `FALSE`).
 
 ```{r}
-surveys |>
+surveys_new |>
   count(employ, sort = TRUE)
 ```
 
 We can count by more than one variable. Here we count by `residence` and `employ`.
 
 ```{r}
-surveys |>
+surveys_new |>
   count(residence, employ)
 ```
 
-### *Practice*
+### Practice
 
 1.  Enumerate eligible mothers surveyed by their education attainment?
 
 ```{r}
-surveys |> count(education)
+surveys_new |> count(education)
 ```
 
-2.  Count the mothers surveys by `state_region` and their `wealth` quantile?
+2.  Count the mothers surveys_new by `state_region` and their `wealth` quantile?
 
 ```{r}
-surveys |> count(state_region, wealth)
+surveys_new |> count(state_region, wealth)
 ```
 
 3.  What was the oldest `age` of mothers in each type of health facility where they gave birth (`ancplace`)? Sort the maximum age in descending order.
 
 ```{r}
-surveys |> 
+surveys_new |> 
   group_by(ancplace) |> 
   summarise(age_max = max(age)) |> 
   ungroup() |> 
   arrange(-age_max)
 ```
+
+## Export data
+
+We can use `write_csv()` to save the dataframe as a CSV file.
+
+```{r}
+write_csv(surveys_new, "data/surveys_new.csv")
+```
+
