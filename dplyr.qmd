@@ -15,7 +15,7 @@ In this session, you will be able to understand:
 3.  How to select columns and filter rows in a dataframe
 4.  How to use pipe
 5.  How to create new columns in a dataframe
-6.  How to aggregate data to summary statistics
+6.  How to aggregate data using summary statistics
 
 *Load package*
 
