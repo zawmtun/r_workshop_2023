@@ -269,7 +269,7 @@ surveys_new <- surveys |>
 Let's check if the grouping is done correctly.
 
 ```{r}
-dat |> 
+surveys_new |> 
   select(age, agegrp) |> 
   table()
 ```
