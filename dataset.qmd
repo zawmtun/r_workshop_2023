@@ -1,4 +1,6 @@
-# Download the data
+# Download the dataset and slides
+
+## Dataset
 
 We will manually download the example dataset from this [link](https://drive.google.com/file/d/105FSGAX3fjIS-rcCSsimi9tesj6n8-7-/view?usp=share_link). If you are expecting problems with the network, it may be better to download the data before the workshop and store it on your computer.
 
@@ -6,16 +8,16 @@ The example dataset is a simplified subset of the [Myanmar Demographic Health Su
 
 Maternal tetanus vaccination was defined as newborns protected against neonatal tetanus. According to the [Myanmar National Guidelines for Antenatal Care](https://themimu.info/sites/themimu.info/files/documents/Ref_Doc_National_Guidelines_for_Antenatal_Care_for_Service_Providers_May2018.pdf), a newborn is protected against neonatal tetanus if the mother has received any of the following:
 
-1\. Two injections of tetanus toxoid containing vaccine during the last pregnancy  
-2\. Two or more injections, the last one within three years of the last pregnancy  
-3\. Three or more injections, the last one within five years of the last pregnancy  
-4\. Four or more injections, the last one within 10 years of the last pregnancy.  
-5\. Five or more injections at any time prior to the last pregnancy
+1\. Two injections of tetanus toxoid containing vaccine during the last pregnancy\
+2. Two or more injections, the last one within three years of the last pregnancy\
+3. Three or more injections, the last one within five years of the last pregnancy\
+4. Four or more injections, the last one within 10 years of the last pregnancy.\
+5. Five or more injections at any time prior to the last pregnancy
 
 Variable names and their labels are listed below:
 
 |         |                                   |                                                                       |
-|---------------|----------------------|-----------------------------------|
+|-----------------|---------------------|----------------------------------|
 | **No.** | **Variable name**                 | **Variable label**                                                    |
 | 1       | caseid                            | ID number of mothers                                                  |
 | 2       | age                               | Age in years                                                          |
@@ -32,3 +34,7 @@ Variable names and their labels are listed below:
 | 13      | get_help_distance_health_facility | Getting medical help for self: distance to health facility            |
 | 14      | ancplace                          | Type of facility where women received antenatal care                  |
 | 15      | tetanus_vacc                      | Maternal tetanus vaccination                                          |
+
+## Slides
+
+The slides presented in the workshop can be downloaded from this [link](https://github.com/zawmtun/r_workshop_ex.git). Look for the green button \[code\] with a dropdown menu from which download the zip file. Then, unzip it on your computer. This is a work-in-progress. The files will be updated as we go along. Please download again at the end of the workshop for more complete files.
