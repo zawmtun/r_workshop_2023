@@ -151,7 +151,7 @@
     "href": "dplyr.html#export-data",
     "title": "3  Data Wrangling",
     "section": "3.10 Export data",
-    "text": "3.10 Export data\nWe can use write_csv() to save the dataframe as a CSV file.\n\nwrite_csv(surveys_new, \"data/surveys_new.csv\")"
+    "text": "3.10 Export data\nWe can use write_csv() to save the dataframe as a CSV file.\n\nwrite_csv(surveys_new, \"data/surveys_new.csv\")\n\nYou can download surveys_new.csv file through this link for further analysis."
   },
   {
     "objectID": "resources.html",
