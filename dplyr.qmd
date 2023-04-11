@@ -422,3 +422,4 @@ We can use `write_csv()` to save the dataframe as a CSV file.
 write_csv(surveys_new, "data/surveys_new.csv")
 ```
 
+You can download `surveys_new.csv` file through this [link](https://drive.google.com/file/d/1-aOE5xIWYrostj9PNKQlZdiFo5SuVcgx/view?usp=sharing) for further analysis.
