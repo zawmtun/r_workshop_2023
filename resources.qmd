@@ -15,3 +15,5 @@
 -   [ggplot2: Elegant Graphics for Data Analysis](ggplot2:%20Elegant%20Graphics%20for%20Data%20Analysis)
 
 -   [The Epidemiologist R Handbook](https://appliedepi.org/epirhandbook/)
+
+-   [Cheatsheets](https://posit.co/resources/cheatsheets/)
