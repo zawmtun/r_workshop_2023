@@ -7,9 +7,9 @@ book:
   date: "3/28/2023"
   chapters:
     - index.qmd
-    - dataset.qmd
-    - intro.qmd
-    - dplyr.qmd
+    # - dataset.qmd
+    # - intro.qmd
+    # - dplyr.qmd
     # - factors.qmd
     # - data_viz.qmd
     # - descriptive.qmd

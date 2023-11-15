@@ -10,8 +10,6 @@
 
 -   [`gt` package website](https://gt.rstudio.com/)
 
--   [`flextable` manual website](https://ardata-fr.github.io/flextable-book/)
-
 -   [ggplot2: Elegant Graphics for Data Analysis](ggplot2:%20Elegant%20Graphics%20for%20Data%20Analysis)
 
 -   [The Epidemiologist R Handbook](https://appliedepi.org/epirhandbook/)
